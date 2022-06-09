@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>SIW Catering</title>
+</head>
+
+<body>
+	<div>
+		<h4>Homepage di SIW Catering</h4>
+		<div>
+			<a th:href="@{/login}" th:text="#{index.login}">Accedi</a>
+		</div>
+		<div>
+			<a th:href="@{/register}" th:text="#{index.register}">Registrati</a>
+		</div>
+	</div>
+</body>
+
+</html>
