@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -20,6 +21,7 @@ public class Piatto {
 	
 	private String descrizione;
 	
+	@ManyToMany
 	private List<Ingrediente> elencoIngredienti;
 
 	public Long getId() {

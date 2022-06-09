@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -23,6 +24,7 @@ public class Chef {
 	
 	private String nazionalita;
 	
+	@OneToMany
 	private List<Buffet> buffetProposti;
 
 	public Long getId() {
