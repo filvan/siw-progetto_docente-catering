@@ -1,4 +1,4 @@
-package it.uniroma3.siw.authentication;
+package it.uniroma3.siw.catering.authentication;
 
 import static it.uniroma3.siw.catering.model.Credentials.ADMIN_ROLE;
 //import static it.uniroma3.siw.spring.model.Credentials.DEFAULT_ROLE;
