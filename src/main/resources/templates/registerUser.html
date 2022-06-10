@@ -25,6 +25,17 @@
 						th:style="'color:red'"></td>
 				</tr>
 				<tr>
+					<td>Nome</td>
+					<td><input type="text" placeholder="nome" required th:field="${user.nome}" /></td>
+					<td th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td>Cognome</td>
+					<td><input type="text" placeholder="cognome" required th:field="${user.cognome}" /></td>
+					<td th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:red'">
+					</td>
+				</tr>
+				<tr>
 					<td>
 						<button type="submit">Registra</button>
 					</td>
@@ -32,6 +43,9 @@
 			</table>
 		</form>
 	</div>
+	<footer>
+		<a href="/">Home</a>
+	</footer>
 </body>
 
 </html>
