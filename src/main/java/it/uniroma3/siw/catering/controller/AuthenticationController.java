@@ -45,7 +45,7 @@ public class AuthenticationController {
 		return "index.html";
 	}
 	
-    @RequestMapping(value = "/default", method = RequestMethod.GET)
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

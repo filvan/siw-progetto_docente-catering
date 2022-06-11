@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 * The AuthConfiguration is a Spring Security Configuration.
 * It extends WebSecurityConfigurerAdapter, meaning that it provides the settings for Web security.
 */
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
@@ -55,8 +56,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
               // la pagina di login si trova a /login
               // NOTA: Spring gestisce il post di login automaticamente
               .loginPage("/login")
-              // se il login ha successo, si viene rediretti al path /default
-              .defaultSuccessUrl("/default")
+              // se il login ha successo, si viene rediretti al path /menu
+              .defaultSuccessUrl("/menu")
 
               // logout paragraph: qui definiamo il logout
               .and().logout()
