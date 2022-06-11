@@ -10,8 +10,17 @@
 	<div>
 		<h4>Menù amministratore</h4>
 		<div>
-			<span>Prova</span>
-		</div>
+			<a href="buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a>
+   		</div>
+		<div>
+			<a href="buffet" th:href="@{/buffet}">Elenco buffet</a>
+   		</div>
+   		<div>
+			<a href="chefForm" th:href="@{/admin/chef}">Inserisci uno chef</a>
+   		</div>
+		<div>
+			<a href="chef" th:href="@{/chef}">Elenco chef</a>
+   		</div>
 		<div>
 			<a th:href="@{/logout}">Logout</a>
 		</div>
