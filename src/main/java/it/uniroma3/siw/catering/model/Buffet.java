@@ -2,10 +2,12 @@ package it.uniroma3.siw.catering.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -20,12 +22,14 @@ public class Buffet {
 	@NotBlank
 	private String nome;
 	
+	@Column(length = 2000)
 	private String descrizione;
 	
 	@ManyToOne
 	private Chef chef;
 	
 	@OneToMany
+	@JoinColumn(name = "buffet_id")
 	private List<Piatto> piatti;
 
 	public Long getId() {
