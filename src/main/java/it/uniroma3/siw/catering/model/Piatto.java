@@ -2,6 +2,7 @@ package it.uniroma3.siw.catering.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +20,11 @@ public class Piatto {
 	@NotBlank
 	private String nome;
 	
+	@Column(length = 2000)
 	private String descrizione;
 	
 	@ManyToMany
-	private List<Ingrediente> elencoIngredienti;
+	private List<Ingrediente> ingredienti;
 
 	public Long getId() {
 		return id;
@@ -49,10 +51,10 @@ public class Piatto {
 	}
 
 	public List<Ingrediente> getElencoIngredienti() {
-		return elencoIngredienti;
+		return ingredienti;
 	}
 
 	public void setElencoIngredienti(List<Ingrediente> elencoIngredienti) {
-		this.elencoIngredienti = elencoIngredienti;
+		this.ingredienti = elencoIngredienti;
 	}
 }
