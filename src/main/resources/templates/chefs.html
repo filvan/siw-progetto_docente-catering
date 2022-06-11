@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Elenco chef</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco chef:</h4>
+		<ul>
+			<li th:each="chef : ${chefs}">
+				<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}"
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a>
+				<!--- <a href="confermaCancellazioneChef.html" th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"
+					th:text="Cancella">Cancella</a> -->
+				<a href="confermaCancellazioneChef.html" th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"
+					th:text="Cancella">Cancella</a>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
