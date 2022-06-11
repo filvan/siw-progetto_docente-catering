@@ -24,7 +24,7 @@ public class Chef {
 	
 	private String nazionalita;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "chef")
 	private List<Buffet> buffetProposti;
 
 	public Long getId() {
