@@ -1,5 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Ingrediente {
 	
 	private String origine;
 	
+	@Column(length = 2000)
 	private String descrizione;
 
 	public Long getId() {
