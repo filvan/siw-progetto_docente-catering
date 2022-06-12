@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Dettagli chef</title>
+</head>
+
+<body>
+	<div>
+		<h4>Dettagli chef</h4>
+		<div>
+			<span>Nome: </span><span th:text="${chef.nome}">Raffaello</span>
+		</div>
+		<div>
+			<span>Cognome: </span><span th:text="${chef.cognome}">Sanzio</span>
+		</div>
+		<div>
+			<span>Nazionalità: </span>
+			<span th:if="${!chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</span>
+			<span th:unless="${!chef.nazionalita.isEmpty()}">Non disponibile</span>
+		</div>
+		<div>
+			<span>Elenco dei buffet proposti da questo chef: </span>
+			<span th:if="${buffets.isEmpty()}">Questo chef non ha ancora proposto nessun buffet</span>
+			<ul>
+				<li th:each="buffet : ${buffets}">
+					<a th:if="${buffet != null}" href="/admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
+						th:text="${buffet.nome}">Buffet di prova</a>
+					<a th:href="@{'/admin/toRemoveBuffet' + '/' + ${buffet.id}}"
+					th:text="Rimuovi">Rimuovi</a>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<a href="/admin/aggiungiBuffetAlloChef.html" th:href="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}"
+				th:text="Aggiungi + ' ' + un + ' ' + buffet + ' ' + a + ' ' + quelli + ' ' + proposti + ' ' + da + ' ' + questo + ' ' + chef">Aggiungi
+				buffet</a>
+		</div>
+	</div>
+	<footer>
+		<div>
+			<a href="/admin/chefs">Elenco chef</a>
+		</div>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
