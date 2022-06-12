@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Elenco chef</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco chef:</h4>
+		<ul>
+			<li th:each="chef : ${chefs}">
+				<a href="user/chef.html" th:href="@{'/user/chef' + '/' + ${chef.id}}"
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<div>
+			<a href="/menu">Menù utente</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
