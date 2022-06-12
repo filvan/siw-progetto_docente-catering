@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Elenco ingredienti</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco ingredienti:</h4>
+		<ul>
+			<li th:each="ingrediente : ${ingredienti}">
+				<a href="admin/ingrediente.html" th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}"
+					th:text="${ingrediente.nome}">Ingrediente di prova</a>
+				<!--- <a href="confermaCancellazioneIngrediente.html" th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"
+					th:text="Cancella">Cancella</a> -->
+				<a href="confermaCancellazioneIngrediente.html" th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"
+					th:text="Cancella">Cancella</a>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
