@@ -14,7 +14,9 @@
 				<span>Nome: </span><span th:text="${buffet.nome}">Buffet</span>
 			</div>
 			<div>
-				<span>Descrizione: </span><span th:text="${buffet.descrizione}">Prova</span>
+				<span>Descrizione: </span>
+				<span th:if="${!buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</span>
+				<span th:unless="${!buffet.descrizione.isEmpty()}">Non disponibile</span>
 			</div>
 		</div>
 		<div>
