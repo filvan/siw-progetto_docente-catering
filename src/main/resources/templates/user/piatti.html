@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Elenco piatti</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco piatti:</h4>
+		<ul>
+			<li th:each="piatto : ${piatti}">
+				<a href="user/piatto.html" th:href="@{'/user/piatto' + '/' + ${piatto.id}}"
+					th:text="${piatto.nome}">Piatto di prova</a>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
