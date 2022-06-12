@@ -23,6 +23,9 @@ public class Piatto {
 	@Column(length = 2000)
 	private String descrizione;
 	
+	@ManyToMany(mappedBy = "piatti")
+	private List<Buffet> buffets;
+	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
 
@@ -50,11 +53,19 @@ public class Piatto {
 		this.descrizione = descrizione;
 	}
 
-	public List<Ingrediente> getElencoIngredienti() {
+	public List<Buffet> getBuffets() {
+		return buffets;
+	}
+
+	public void setBuffets(List<Buffet> buffet) {
+		this.buffets = buffet;
+	}
+
+	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
 
-	public void setElencoIngredienti(List<Ingrediente> elencoIngredienti) {
+	public void setIngredienti(List<Ingrediente> elencoIngredienti) {
 		this.ingredienti = elencoIngredienti;
 	}
 }
