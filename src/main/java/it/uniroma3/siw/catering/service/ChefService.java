@@ -14,7 +14,6 @@ import it.uniroma3.siw.catering.repository.ChefRepository;
 @Service
 public class ChefService {
 
-	
 	@Autowired
 	private ChefRepository chefRepository; 
 	
