@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Aggiungi buffet allo chef</title>
+</head>
+
+<body>
+	<div>
+		<h4>Aggiungi un buffet a quelli proposti dallo chef</h4>
+		<span th:if="${buffets.isEmpty()}">Non ci sono buffet da poter aggiungere!</span>
+		<form th:unless="${buffets.isEmpty()}" th:action="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}" method="POST" th:object="${buffet}">
+			<div>
+				<div>
+					<span><label for="seleziona-buffet">Scegli un buffet tra quelli presenti nell'elenco:</label><span>
+							<span><select name="buffet" id="seleziona-buffet">
+									<option disabled=true>--Per favore, scegli un buffet--</option>
+									<option th:each="b : ${buffets}" th:text="${b.nome}" th:value="${b.id}">
+										Buffet di prova</option>
+								</select></span>
+				</div>
+			</div>
+			<div>
+				<span><button type="submit">Conferma</button></span>
+			</div>
+		</form>
+	</div>
+	<footer>
+		<div>
+			<a href="/admin/chefs">Elenco chef</a>
+		</div>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
