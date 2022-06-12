@@ -1,5 +1,7 @@
 package it.uniroma3.siw.catering.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,7 +34,7 @@ public class AuthenticationController {
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
-		return "registerUser.html";
+		return "/user/registerUser.html";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 
@@ -53,13 +55,13 @@ public class AuthenticationController {
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/menuAdmin.html";
         }
-        return "menuUser.html";
+        return "user/menuUser.html";
     }
 	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("user") User user,
+    public String registerUser(@Valid @ModelAttribute("user") User user,
                  BindingResult userBindingResult,
-                 @ModelAttribute("credentials") Credentials credentials,
+                 @Valid @ModelAttribute("credentials") Credentials credentials,
                  BindingResult credentialsBindingResult,
                  Model model) {
 
@@ -73,8 +75,8 @@ public class AuthenticationController {
             // this also stores the User, thanks to Cascade.ALL policy
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
-            return "registrationSuccessful.html";
+            return "user/registrationSuccessful.html";
         }
-        return "registerUser.html";
+        return "user/registerUser.html";
     }
 }
