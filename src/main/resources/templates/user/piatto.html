@@ -17,13 +17,25 @@
 			<span th:if="${!piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</span>
 			<span th:unless="${!piatto.descrizione.isEmpty()}">Non disponibile</span>
 		</div>
+		<div>
+			<span>Elenco degli ingredienti: </span>
+			<span th:if="${ingredienti.isEmpty()}">L'elenco non è disponibile</span>
+			<ul>
+				<li th:each="ingrediente : ${ingredienti}">
+					<a th:if="${ingrediente != null}" href="/user/ingrediente.html"
+						th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}"
+						th:text="${ingrediente.nome}">Ingrediente di prova</a>
+					
+				</li>
+			</ul>
+		</div>
 	</div>
 	<footer>
 		<div>
 			<a href="/user/piatti">Elenco piatti</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Menù utente</a>
 		</div>
 		<div>
 			<a href="/">Home</a>
