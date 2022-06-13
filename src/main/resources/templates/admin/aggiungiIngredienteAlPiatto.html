@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Aggiungi ingrediente al piatto</title>
+</head>
+
+<body>
+	<div>
+		<h4>Aggiungi un ingrediente all'elenco degli ingredienti del piatto</h4>
+		<span th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti da poter aggiungere!</span>
+		<form th:unless="${ingredienti.isEmpty()}" th:action="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}" method="POST" th:object="${ingrediente}">
+			<div>
+				<div>
+					<span><label for="seleziona-ingrediente">Scegli un ingrediente tra quelli presenti nell'elenco:</label><span>
+							<span><select name="ingrediente" id="seleziona-ingrediente">
+									<option disabled=true>--Per favore, scegli un ingrediente--</option>
+									<option th:each="i : ${ingredienti}" th:text="${i.nome}" th:value="${i.id}">
+										Ingrediente di prova</option>
+								</select></span>
+				</div>
+			</div>
+			<div>
+				<span><button type="submit">Conferma</button></span>
+			</div>
+		</form>
+	</div>
+	<footer>
+		<div>
+			<a href="/admin/piatti">Elenco piatti</a>
+		</div>
+		<div>
+			<a href="/menu">Menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Home</a>
+		</div>
+	</footer>
+</body>
+
+</html>
