@@ -27,10 +27,10 @@ public class ChefController {
 	private ChefService chefService;
 
 	@Autowired
-	private BuffetService buffetService;
-
-	@Autowired
 	private ChefValidator chefValidator;
+	
+	@Autowired
+	private BuffetService buffetService;
 
 	/*
 	 * Convenzione: GET per le operazioni di lettura, POST per le operazioni di scrittura.
@@ -80,6 +80,8 @@ public class ChefController {
 		Chef chef = this.chefService.findById(id);
 		buffet.setChef(chef);
 		this.buffetService.save(buffet);
+		chef.addBuffet(buffet);
+		this.chefService.save(chef);
 		model.addAttribute("chefs", this.chefService.findAll());
 		return "admin/chefs.html";
 	}
@@ -89,8 +91,9 @@ public class ChefController {
 		Buffet buffet =  this.buffetService.findById(id);
 		Chef chef = buffet.getChef();
 		buffet.setChef(null);
-		chef.getBuffetProposti().remove(buffet);
+		chef.removeBuffet(buffet);
 		this.buffetService.save(buffet);
+		this.chefService.save(chef);
 		return this.getAdminChefById(chef.getId(), model);
 	}
 
@@ -151,6 +154,7 @@ public class ChefController {
 		Chef chef =  this.chefService.findById(id);
 		for (Buffet buffet : chef.getBuffetProposti()) {
 			buffet.setChef(null);
+			this.buffetService.save(buffet);
 		}
 		this.chefService.delete(chef);
 		return this.getAdminChefs(model);
