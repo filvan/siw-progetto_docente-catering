@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -91,7 +91,7 @@ public class PiattoController {
 	// richiede tutti i piatti (non viene specificato un id particolare)
 	@GetMapping("/admin/piatti")
 	public String getAdminPiatti(Model model) {
-		List<Piatto> piatti = this.piattoService.findAll();
+		Set<Piatto> piatti = this.piattoService.findAll();
 		model.addAttribute("piatti", piatti);
 		return "admin/piatti.html";
 	}
@@ -99,7 +99,7 @@ public class PiattoController {
 	// richiede tutti i piatti (non viene specificato un id particolare)
 	@GetMapping("/user/piatti")
 	public String getUserPiatti(Model model) {
-		List<Piatto> piatti = this.piattoService.findAll();
+		Set<Piatto> piatti = this.piattoService.findAll();
 		model.addAttribute("piatti", piatti);
 		return "user/piatti.html";
 	}
@@ -109,9 +109,9 @@ public class PiattoController {
 	public String getAdminPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		List<Buffet> buffets = piatto.getBuffets();
+		Set<Buffet> buffets = piatto.getBuffets();
 		model.addAttribute("buffets", buffets);
-		List<Ingrediente> ingredienti = piatto.getIngredienti();
+		Set<Ingrediente> ingredienti = piatto.getIngredienti();
 		model.addAttribute("ingredienti", ingredienti);
 		return "admin/piatto.html";
 	}
@@ -121,7 +121,7 @@ public class PiattoController {
 	public String getUserPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		List<Ingrediente> ingredienti = piatto.getIngredienti();
+		Set<Ingrediente> ingredienti = piatto.getIngredienti();
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/piatto.html";
 	}
@@ -130,7 +130,7 @@ public class PiattoController {
 	//	public String deletePiattoById(@PathVariable("id") Long id, Model model) {
 	//		Piatto piatto =  this.piattoService.findById(id);
 	//		this.piattoService.delete(piatto);
-	//		List<Piatto> piatti = this.piattoService.findAll();
+	//		Set<Piatto> piatti = this.piattoService.findAll();
 	//		model.addAttribute("piatti", piatti);
 	//		return "admin/piatti.html";
 	//	}

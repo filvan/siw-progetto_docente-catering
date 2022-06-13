@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +25,7 @@ public class Chef {
 	private String nazionalita;
 	
 	@OneToMany(mappedBy = "chef")
-	private List<Buffet> buffetProposti;
+	private Set<Buffet> buffetProposti;
 
 	public Long getId() {
 		return id;
@@ -59,21 +59,21 @@ public class Chef {
 		this.nazionalita = nazionalita;
 	}
 
-	public List<Buffet> getBuffetProposti() {
+	public Set<Buffet> getBuffetProposti() {
 		return buffetProposti;
 	}
 
-	public void setBuffetProposti(List<Buffet> buffetProposti) {
+	public void setBuffetProposti(Set<Buffet> buffetProposti) {
 		this.buffetProposti = buffetProposti;
 	}
 	
 	public void addBuffet(Buffet buffet) {
-		List<Buffet> buffetProposti = this.getBuffetProposti();
+		Set<Buffet> buffetProposti = this.getBuffetProposti();
 		buffetProposti.add(buffet);
 	}
 	
 	public void removeBuffet(Buffet buffet) {
-		List<Buffet> buffetProposti = this.getBuffetProposti();
+		Set<Buffet> buffetProposti = this.getBuffetProposti();
 		buffetProposti.remove(buffet);
 	}
 }

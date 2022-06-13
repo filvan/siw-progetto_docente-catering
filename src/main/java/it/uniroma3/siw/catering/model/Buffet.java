@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ public class Buffet {
 	private Chef chef;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private List<Piatto> piatti;
+	private Set<Piatto> piatti;
 
 	public Long getId() {
 		return id;
@@ -64,21 +64,21 @@ public class Buffet {
 		this.chef = chef;
 	}
 
-	public List<Piatto> getPiatti() {
+	public Set<Piatto> getPiatti() {
 		return piatti;
 	}
 
-	public void setPiatti(List<Piatto> piatti) {
+	public void setPiatti(Set<Piatto> piatti) {
 		this.piatti = piatti;
 	}
 	
 	public void addPiatto(Piatto piatto) {
-		List<Piatto> piatti = this.getPiatti();
+		Set<Piatto> piatti = this.getPiatti();
 		piatti.add(piatto);
 	}
 	
 	public void removePiatto(Piatto piatto) {
-		List<Piatto> piatti = this.getPiatti();
+		Set<Piatto> piatti = this.getPiatti();
 		piatti.remove(piatto);
 	}
 }

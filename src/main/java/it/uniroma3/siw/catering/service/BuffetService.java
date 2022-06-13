@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -23,8 +23,8 @@ public class BuffetService {
 	}
 
 	@Transactional
-	public List<Buffet> findAll() {
-		return (List<Buffet>) buffetRepository.findAll();
+	public Set<Buffet> findAll() {
+		return (Set<Buffet>) buffetRepository.findAll();
 	}
 
 	@Transactional
@@ -38,7 +38,7 @@ public class BuffetService {
 
 	@Transactional
 	public boolean alreadyExists(Buffet buffet) {
-		List<Buffet> buffets = this.buffetRepository.findByNome(buffet.getNome());
+		Set<Buffet> buffets = this.buffetRepository.findByNome(buffet.getNome());
 		if (buffets.size() > 0)
 			return true;
 		else 

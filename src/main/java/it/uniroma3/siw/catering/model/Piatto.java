@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +24,10 @@ public class Piatto {
 	private String descrizione;
 	
 	@ManyToMany(mappedBy = "piatti")
-	private List<Buffet> buffets;
+	private Set<Buffet> buffets;
 	
 	@ManyToMany
-	private List<Ingrediente> ingredienti;
+	private Set<Ingrediente> ingredienti;
 
 	public Long getId() {
 		return id;
@@ -53,39 +53,39 @@ public class Piatto {
 		this.descrizione = descrizione;
 	}
 
-	public List<Buffet> getBuffets() {
+	public Set<Buffet> getBuffets() {
 		return buffets;
 	}
 
-	public void setBuffets(List<Buffet> buffet) {
+	public void setBuffets(Set<Buffet> buffet) {
 		this.buffets = buffet;
 	}
 	
 	public void addBuffet(Buffet buffet) {
-		List<Buffet> buffets = this.getBuffets();
+		Set<Buffet> buffets = this.getBuffets();
 		buffets.add(buffet);
 	}
 	
 	public void removeBuffet(Buffet buffet) {
-		List<Buffet> buffets = this.getBuffets();
+		Set<Buffet> buffets = this.getBuffets();
 		buffets.remove(buffet);
 	}
 
-	public List<Ingrediente> getIngredienti() {
+	public Set<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
 
-	public void setIngredienti(List<Ingrediente> elencoIngredienti) {
+	public void setIngredienti(Set<Ingrediente> elencoIngredienti) {
 		this.ingredienti = elencoIngredienti;
 	}
 	
 	public void addIngrediente(Ingrediente ingrediente) {
-		List<Ingrediente> piatti = this.getIngredienti();
+		Set<Ingrediente> piatti = this.getIngredienti();
 		piatti.add(ingrediente);
 	}
 	
 	public void removeIngrediente(Ingrediente ingrediente) {
-		List<Ingrediente> piatti = this.getIngredienti();
+		Set<Ingrediente> piatti = this.getIngredienti();
 		piatti.remove(ingrediente);
 	}
 }

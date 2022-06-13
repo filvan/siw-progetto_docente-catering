@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -23,8 +23,8 @@ public class PiattoService {
 	}
 
 	@Transactional
-	public List<Piatto> findAll() {
-		return (List<Piatto>) piattoRepository.findAll();
+	public Set<Piatto> findAll() {
+		return (Set<Piatto>) piattoRepository.findAll();
 	}
 
 	@Transactional
@@ -38,7 +38,7 @@ public class PiattoService {
 
 	@Transactional
 	public boolean alreadyExists(Piatto piatto) {
-		List<Piatto> piatti = this.piattoRepository.findByNome(piatto.getNome());
+		Set<Piatto> piatti = this.piattoRepository.findByNome(piatto.getNome());
 		if (piatti.size() > 0)
 			return true;
 		else 

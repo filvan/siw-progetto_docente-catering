@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -91,7 +91,7 @@ public class BuffetController {
 	// richiede tutti i buffet (non viene specificato un id particolare)
 	@GetMapping("/admin/buffets")
 	public String getAdminBuffets(Model model) {
-		List<Buffet> buffets = this.buffetService.findAll();
+		Set<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
 		return "admin/buffets.html";
 	}
@@ -99,7 +99,7 @@ public class BuffetController {
 	// richiede tutti i buffet (non viene specificato un id particolare)
 	@GetMapping("/user/buffets")
 	public String getUserBuffets(Model model) {
-		List<Buffet> buffets = this.buffetService.findAll();
+		Set<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
 		return "user/buffets.html";
 	}
@@ -109,7 +109,7 @@ public class BuffetController {
 	public String getAdminBuffetById(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
-		List<Piatto> piatti = buffet.getPiatti();
+		Set<Piatto> piatti = buffet.getPiatti();
 		model.addAttribute("piatti", piatti);
 		return "admin/buffet.html";
 	}
@@ -119,7 +119,7 @@ public class BuffetController {
 	public String getUserBuffetById(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
-		List<Piatto> piatti = buffet.getPiatti();
+		Set<Piatto> piatti = buffet.getPiatti();
 		model.addAttribute("piatti", piatti);
 		return "user/buffet.html";
 	}
@@ -128,7 +128,7 @@ public class BuffetController {
 	//	public String deleteBuffetById(@PathVariable("id") Long id, Model model) {
 	//		Buffet buffet =  this.buffetService.findById(id);
 	//		this.buffetService.delete(buffet);
-	//		List<Buffet> buffets = this.buffetService.findAll();
+	//		Set<Buffet> buffets = this.buffetService.findAll();
 	//		model.addAttribute("buffets", buffets);
 	//		return "admin/buffets.html";
 	//	}
@@ -143,7 +143,7 @@ public class BuffetController {
 	@GetMapping("/admin/confirmDeleteBuffet/{id}")
 	public String confirmDeleteBuffetById(@PathVariable("id") Long id, Model model) {
 		this.buffetService.deleteById(id);
-		List<Buffet> buffets = this.buffetService.findAll();
+		Set<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
 		return "admin/buffets.html";
 	}

@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -23,8 +23,8 @@ public class ChefService {
 	}
 
 	@Transactional
-	public List<Chef> findAll() {
-		return (List<Chef>) chefRepository.findAll();
+	public Set<Chef> findAll() {
+		return (Set<Chef>) chefRepository.findAll();
 	}
 
 	@Transactional
@@ -38,7 +38,7 @@ public class ChefService {
 
 	@Transactional
 	public boolean alreadyExists(Chef chef) {
-		List<Chef> chefs = this.chefRepository.findByNomeAndCognome(chef.getNome(), chef.getCognome());
+		Set<Chef> chefs = this.chefRepository.findByNomeAndCognome(chef.getNome(), chef.getCognome());
 		if (chefs.size() > 0)
 			return true;
 		else 

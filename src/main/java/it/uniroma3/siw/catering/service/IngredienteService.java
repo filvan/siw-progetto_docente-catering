@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -23,8 +23,8 @@ public class IngredienteService {
 	}
 
 	@Transactional
-	public List<Ingrediente> findAll() {
-		return (List<Ingrediente>) ingredienteRepository.findAll();
+	public Set<Ingrediente> findAll() {
+		return (Set<Ingrediente>) ingredienteRepository.findAll();
 	}
 
 	@Transactional
@@ -38,7 +38,7 @@ public class IngredienteService {
 
 	@Transactional
 	public boolean alreadyExists(Ingrediente ingrediente) {
-		List<Ingrediente> ingredienti = this.ingredienteRepository.findByNome(ingrediente.getNome());
+		Set<Ingrediente> ingredienti = this.ingredienteRepository.findByNome(ingrediente.getNome());
 		if (ingredienti.size() > 0)
 			return true;
 		else 

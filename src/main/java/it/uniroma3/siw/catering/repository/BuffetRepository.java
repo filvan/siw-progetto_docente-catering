@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -8,6 +8,6 @@ import it.uniroma3.siw.catering.model.Buffet;
 
 public interface BuffetRepository extends CrudRepository<Buffet, Long> {
 	
-	public List<Buffet> findByNome(String nome);
+	public Set<Buffet> findByNome(String nome);
 
 }

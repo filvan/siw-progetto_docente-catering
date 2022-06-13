@@ -1,6 +1,6 @@
 package it.uniroma3.siw.catering.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -53,7 +53,7 @@ public class IngredienteController {
 	// richiede tutti gli ingredienti (non viene specificato un id particolare)
 	@GetMapping("/admin/ingredienti")
 	public String getAdminIngredienti(Model model) {
-		List<Ingrediente> ingredienti = this.ingredienteService.findAll();
+		Set<Ingrediente> ingredienti = this.ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
 		return "admin/ingredienti.html";
 	}
@@ -61,7 +61,7 @@ public class IngredienteController {
 	// richiede tutti gli ingredienti (non viene specificato un id particolare)
 	@GetMapping("/user/ingredienti")
 	public String getUserIngredienti(Model model) {
-		List<Ingrediente> ingredienti = this.ingredienteService.findAll();
+		Set<Ingrediente> ingredienti = this.ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/ingredienti.html";
 	}
@@ -71,7 +71,7 @@ public class IngredienteController {
 	public String getAdminIngredienteById(@PathVariable("id") Long id, Model model) {
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
-		List<Piatto> piatti = ingrediente.getPiatti();
+		Set<Piatto> piatti = ingrediente.getPiatti();
 		model.addAttribute("piatti", piatti);
 		return "admin/ingrediente.html";
 	}
@@ -81,7 +81,7 @@ public class IngredienteController {
 	public String getUserIngredienteById(@PathVariable("id") Long id, Model model) {
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
-		List<Piatto> piatti = ingrediente.getPiatti();
+		Set<Piatto> piatti = ingrediente.getPiatti();
 		model.addAttribute("piatti", piatti);
 		return "user/ingrediente.html";
 	}
@@ -90,7 +90,7 @@ public class IngredienteController {
 	//	public String deleteIngredienteById(@PathVariable("id") Long id, Model model) {
 	//		Ingrediente ingrediente =  this.ingredienteService.findById(id);
 	//		this.ingredienteService.delete(ingrediente);
-	//		List<Ingrediente> ingredienti = this.ingredienteService.findAll();
+	//		Set<Ingrediente> ingredienti = this.ingredienteService.findAll();
 	//		model.addAttribute("ingredienti", ingredienti);
 	//		return "admin/ingredienti.html";
 	//	}

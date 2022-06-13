@@ -1,7 +1,7 @@
 package it.uniroma3.siw.catering.controller;
 
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -60,7 +60,7 @@ public class ChefController {
 		Chef chef = this.chefService.findById(id);
 		model.addAttribute("chef", chef);
 
-		List<Buffet> buffetSenzaChef = this.buffetService.findAll();
+		Set<Buffet> buffetSenzaChef = this.buffetService.findAll();
 
 		for (Iterator<Buffet> iterator = buffetSenzaChef.iterator(); iterator.hasNext();) {
 			Buffet buffet = (Buffet) iterator.next();
@@ -100,7 +100,7 @@ public class ChefController {
 	// richiede tutti gli chef (non viene specificato un id particolare)
 	@GetMapping("/admin/chefs")
 	public String getAdminChefs(Model model) {
-		List<Chef> chefs = this.chefService.findAll();
+		Set<Chef> chefs = this.chefService.findAll();
 		model.addAttribute("chefs", chefs);
 		return "admin/chefs.html";
 	}
@@ -108,7 +108,7 @@ public class ChefController {
 	// richiede tutti gli chef (non viene specificato un id particolare)
 	@GetMapping("/user/chefs")
 	public String getUserChefs(Model model) {
-		List<Chef> chefs = this.chefService.findAll();
+		Set<Chef> chefs = this.chefService.findAll();
 		model.addAttribute("chefs", chefs);
 		return "user/chefs.html";
 	}
@@ -118,7 +118,7 @@ public class ChefController {
 	public String getAdminChefById(@PathVariable("id") Long id, Model model) {
 		Chef chef = this.chefService.findById(id);
 		model.addAttribute("chef", chef);
-		List<Buffet> buffets = chef.getBuffetProposti();
+		Set<Buffet> buffets = chef.getBuffetProposti();
 		model.addAttribute("buffets", buffets);
 		return "admin/chef.html";
 	}
@@ -128,7 +128,7 @@ public class ChefController {
 	public String getUserChefById(@PathVariable("id") Long id, Model model) {
 		Chef chef = this.chefService.findById(id);
 		model.addAttribute("chef", chef);
-		List<Buffet> buffets = chef.getBuffetProposti();
+		Set<Buffet> buffets = chef.getBuffetProposti();
 		model.addAttribute("buffets", buffets);
 		return "user/chef.html";
 	}
@@ -137,7 +137,7 @@ public class ChefController {
 	//	public String deleteChefById(@PathVariable("id") Long id, Model model) {
 	//		Chef chef =  this.chefService.findById(id);
 	//		this.chefService.delete(chef);
-	//		List<Chef> chefs = this.chefService.findAll();
+	//		Set<Chef> chefs = this.chefService.findAll();
 	//		model.addAttribute("chefs", chefs);
 	//		return "admin/chefs.html";
 	//	}
