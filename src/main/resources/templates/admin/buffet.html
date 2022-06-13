@@ -18,11 +18,27 @@
 			<span th:unless="${!buffet.descrizione.isEmpty()}">Non disponibile</span>
 		</div>
 		<div>
+			<span>Elenco dei piatti: </span>
+			<span th:if="${piatti.isEmpty()}">L'elenco non è disponibile</span>
+			<ul>
+				<li th:each="piatto : ${piatti}">
+					<a th:if="${piatto != null}" href="/admin/piatto.html"
+						th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di prova</a>
+					<a th:href="@{'/admin/toRemovePiatto' + '/' + ${piatto.id} + '/From/' + ${buffet.id}}" th:text="Rimuovi">Rimuovi</a>
+				</li>
+			</ul>
+		</div>
+		<div>
 			<span>Proposto dallo chef: </span>
 			<a th:if="${buffet.chef != null}" href="/admin/chef.html"
 				th:href="@{'/admin/chef' + '/' + ${buffet.chef.id}}"
 				th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Chef</a>
 			<span th:unless="${buffet.chef != null}">Non disponibile</span>
+		</div>
+		<div>
+			<a href="/admin/aggiungiPiattoAlBuffet.html" th:href="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}"
+				th:text="Aggiungi + ' ' + un + ' ' + piatto + ' ' + allelenco + ' ' + dei + ' ' + piatti + ' ' + di + ' ' + questo + ' ' + buffet">Aggiungi
+				piatto</a>
 		</div>
 	</div>
 	<footer>

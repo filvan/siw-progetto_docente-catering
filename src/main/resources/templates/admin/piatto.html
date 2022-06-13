@@ -18,6 +18,16 @@
 			<span th:unless="${!piatto.descrizione.isEmpty()}">Non disponibile</span>
 		</div>
 		<div>
+			<span>Elenco dei buffet in cui è presente questo piatto: </span>
+			<span th:if="${buffets.isEmpty()}">L'elenco non è disponibile</span>
+			<ul>
+				<li th:each="buffet : ${buffets}">
+					<a th:if="${buffet != null}" href="/admin/buffet.html"
+						th:href="@{'/admin/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di prova</a>
+				</li>
+			</ul>
+		</div>
+		<div>
 			<span>Elenco degli ingredienti: </span>
 			<span th:if="${ingredienti.isEmpty()}">L'elenco non è disponibile</span>
 			<ul>
