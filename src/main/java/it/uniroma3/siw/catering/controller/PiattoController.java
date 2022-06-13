@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.controller.validator.PiattoValidator;
+import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
+import it.uniroma3.siw.catering.service.IngredienteService;
 import it.uniroma3.siw.catering.service.PiattoService;
 
 @Controller
@@ -25,6 +27,9 @@ public class PiattoController {
 
 	@Autowired
 	private PiattoValidator piattoValidator;
+
+	@Autowired
+	private IngredienteService ingredienteService;
 
 	/*
 	 * Convenzione: GET per le operazioni di lettura, POST per le operazioni di scrittura.
@@ -48,6 +53,39 @@ public class PiattoController {
 		}
 		return "admin/piattoForm.html";
 	}
+	
+	@GetMapping("/admin/addIngredienteToPiatto/{piattoId}")
+	public String getIngrediente(@PathVariable("piattoId") Long id,	Model model) {
+		Piatto piatto = this.piattoService.findById(id);
+		model.addAttribute("piatto", piatto);
+		model.addAttribute("ingredienti", this.ingredienteService.findAll());
+		model.addAttribute("ingrediente", new Ingrediente()); // necessario perché la pagina aggiungiIngredienteAlPiatto.html si aspetta sempre 
+		// di avere un oggetto Ingrediente, anche vuoto, a disposizione
+		return "admin/aggiungiIngredienteAlPiatto.html";
+	}
+	
+	@PostMapping("/admin/addIngredienteToPiatto/{piattoId}")
+	public String addIngredienteToPiatto(@PathVariable("piattoId") Long id, @ModelAttribute("ingrediente") Ingrediente ingrediente,
+			Model model, BindingResult bindingResult) {
+		Piatto piatto = this.piattoService.findById(id);
+		ingrediente.addPiatto(piatto);
+		piatto.addIngrediente(ingrediente);
+		this.ingredienteService.save(ingrediente);
+		this.piattoService.save(piatto);
+		model.addAttribute("piatti", this.piattoService.findAll());
+		return "admin/piatti.html";
+	}
+	
+	@GetMapping("/admin/toRemoveIngrediente/{ingredienteId}/From/{piattoId}")
+	public String removeIngredienteById(@PathVariable("ingredienteId") Long ingredienteId, @PathVariable("piattoId") Long piattoId, Model model) {
+		Ingrediente ingrediente =  this.ingredienteService.findById(ingredienteId);
+		Piatto piatto =  this.piattoService.findById(piattoId);
+		ingrediente.removePiatto(piatto);
+		piatto.removeIngrediente(ingrediente);
+		this.ingredienteService.save(ingrediente);
+		this.piattoService.save(piatto);
+		return this.getAdminPiattoById(piatto.getId(), model);
+	}
 
 	// richiede tutti i piatti (non viene specificato un id particolare)
 	@GetMapping("/admin/piatti")
@@ -70,6 +108,8 @@ public class PiattoController {
 	public String getAdminPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
+		List<Ingrediente> ingredienti = piatto.getIngredienti();
+		model.addAttribute("ingredienti", ingredienti);
 		return "admin/piatto.html";
 	}
 
@@ -78,6 +118,8 @@ public class PiattoController {
 	public String getUserPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
+		List<Ingrediente> ingredienti = piatto.getIngredienti();
+		model.addAttribute("ingredienti", ingredienti);
 		return "user/piatto.html";
 	}
 
