@@ -66,4 +66,14 @@ public class Chef {
 	public void setBuffetProposti(List<Buffet> buffetProposti) {
 		this.buffetProposti = buffetProposti;
 	}
+	
+	public void addBuffet(Buffet buffet) {
+		List<Buffet> buffetProposti = this.getBuffetProposti();
+		buffetProposti.add(buffet);
+	}
+	
+	public void removeBuffet(Buffet buffet) {
+		List<Buffet> buffetProposti = this.getBuffetProposti();
+		buffetProposti.remove(buffet);
+	}
 }

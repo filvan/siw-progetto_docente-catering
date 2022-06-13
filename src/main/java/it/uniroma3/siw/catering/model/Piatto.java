@@ -60,6 +60,16 @@ public class Piatto {
 	public void setBuffets(List<Buffet> buffet) {
 		this.buffets = buffet;
 	}
+	
+	public void addBuffet(Buffet buffet) {
+		List<Buffet> buffets = this.getBuffets();
+		buffets.add(buffet);
+	}
+	
+	public void removeBuffet(Buffet buffet) {
+		List<Buffet> buffets = this.getBuffets();
+		buffets.remove(buffet);
+	}
 
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
@@ -67,5 +77,15 @@ public class Piatto {
 
 	public void setIngredienti(List<Ingrediente> elencoIngredienti) {
 		this.ingredienti = elencoIngredienti;
+	}
+	
+	public void addIngrediente(Ingrediente ingrediente) {
+		List<Ingrediente> piatti = this.getIngredienti();
+		piatti.add(ingrediente);
+	}
+	
+	public void removeIngrediente(Ingrediente ingrediente) {
+		List<Ingrediente> piatti = this.getIngredienti();
+		piatti.remove(ingrediente);
 	}
 }

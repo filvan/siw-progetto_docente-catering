@@ -71,4 +71,14 @@ public class Buffet {
 	public void setPiatti(List<Piatto> piatti) {
 		this.piatti = piatti;
 	}
+	
+	public void addPiatto(Piatto piatto) {
+		List<Piatto> piatti = this.getPiatti();
+		piatti.add(piatto);
+	}
+	
+	public void removePiatto(Piatto piatto) {
+		List<Piatto> piatti = this.getPiatti();
+		piatti.remove(piatto);
+	}
 }
