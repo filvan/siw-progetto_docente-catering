@@ -75,12 +75,12 @@ public class ChefController {
 	}
 
 	@PostMapping("/admin/addBuffetToChef/{chefId}")
-	public String addBuffetToChef(@PathVariable("chefId") Long id, @ModelAttribute("buffet") Buffet buffet, 
+	public String addBuffetToChef(@PathVariable("chefId") Long id, @Valid @ModelAttribute("buffet") Buffet buffet, 
 			Model model, BindingResult bindingResult) {
 		Chef chef = this.chefService.findById(id);
 		buffet.setChef(chef);
-		this.buffetService.save(buffet);
 		chef.addBuffet(buffet);
+		this.buffetService.save(buffet);
 		this.chefService.save(chef);
 		model.addAttribute("chefs", this.chefService.findAll());
 		return "admin/chefs.html";
