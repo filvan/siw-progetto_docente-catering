@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.controller.validator.IngredienteValidator;
 import it.uniroma3.siw.catering.model.Ingrediente;
+import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.IngredienteService;
 
 @Controller
@@ -70,6 +71,8 @@ public class IngredienteController {
 	public String getAdminIngredienteById(@PathVariable("id") Long id, Model model) {
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
+		List<Piatto> piatti = ingrediente.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "admin/ingrediente.html";
 	}
 
@@ -78,6 +81,8 @@ public class IngredienteController {
 	public String getUserIngredienteById(@PathVariable("id") Long id, Model model) {
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
+		List<Piatto> piatti = ingrediente.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "user/ingrediente.html";
 	}
 
