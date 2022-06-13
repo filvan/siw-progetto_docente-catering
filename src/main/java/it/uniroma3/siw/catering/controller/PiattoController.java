@@ -1,5 +1,6 @@
 package it.uniroma3.siw.catering.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -59,7 +60,16 @@ public class PiattoController {
 	public String getIngrediente(@PathVariable("piattoId") Long id,	Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		model.addAttribute("ingredienti", this.ingredienteService.findAll());
+		
+		List<Ingrediente> ingredientiNonGiaInseriti = this.ingredienteService.findAll();
+
+		for (Iterator<Ingrediente> iterator = ingredientiNonGiaInseriti.iterator(); iterator.hasNext();) {
+			Ingrediente ingrediente = (Ingrediente) iterator.next();
+			if (ingrediente.getPiatti().contains(piatto))
+				iterator.remove();
+		}
+		
+		model.addAttribute("ingredienti", ingredientiNonGiaInseriti);
 		model.addAttribute("ingrediente", new Ingrediente()); // necessario perché la pagina aggiungiIngredienteAlPiatto.html si aspetta sempre 
 		// di avere un oggetto Ingrediente, anche vuoto, a disposizione
 		return "admin/aggiungiIngredienteAlPiatto.html";
@@ -121,6 +131,8 @@ public class PiattoController {
 	public String getUserPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
+		List<Buffet> buffets = piatto.getBuffets();
+		model.addAttribute("buffets", buffets);
 		List<Ingrediente> ingredienti = piatto.getIngredienti();
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/piatto.html";
