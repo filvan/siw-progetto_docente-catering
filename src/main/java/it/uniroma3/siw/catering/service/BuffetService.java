@@ -1,7 +1,8 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.Set;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +25,11 @@ public class BuffetService {
 
 	@Transactional
 	public Set<Buffet> findAll() {
-		return (Set<Buffet>) buffetRepository.findAll();
+		Set<Buffet> insiemeBuffet = new HashSet<>();
+		Iterable<Buffet> buffets = buffetRepository.findAll();
+		for (Buffet buffet : buffets)
+			insiemeBuffet.add(buffet);
+		return insiemeBuffet;
 	}
 
 	@Transactional

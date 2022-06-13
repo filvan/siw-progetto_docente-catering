@@ -1,7 +1,8 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.Set;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +25,11 @@ public class IngredienteService {
 
 	@Transactional
 	public Set<Ingrediente> findAll() {
-		return (Set<Ingrediente>) ingredienteRepository.findAll();
+		Set<Ingrediente> insiemeIngredienti = new HashSet<>();
+		Iterable<Ingrediente> ingredienti = ingredienteRepository.findAll();
+		for (Ingrediente ingrediente : ingredienti)
+			insiemeIngredienti.add(ingrediente);
+		return insiemeIngredienti;
 	}
 
 	@Transactional

@@ -1,7 +1,8 @@
 package it.uniroma3.siw.catering.service;
 
-import java.util.Set;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +25,11 @@ public class ChefService {
 
 	@Transactional
 	public Set<Chef> findAll() {
-		return (Set<Chef>) chefRepository.findAll();
+		Set<Chef> insiemeChef = new HashSet<>();
+		Iterable<Chef> chefs = chefRepository.findAll();
+		for (Chef chef : chefs)
+			insiemeChef.add(chef);
+		return insiemeChef;
 	}
 
 	@Transactional
