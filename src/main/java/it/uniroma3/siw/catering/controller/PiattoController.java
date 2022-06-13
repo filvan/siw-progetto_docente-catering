@@ -121,6 +121,8 @@ public class PiattoController {
 	public String getUserPiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
+		Set<Buffet> buffets = piatto.getBuffets();
+		model.addAttribute("buffets", buffets);
 		Set<Ingrediente> ingredienti = piatto.getIngredienti();
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/piatto.html";
