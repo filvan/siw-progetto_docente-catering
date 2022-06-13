@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.controller.validator.BuffetValidator;
 import it.uniroma3.siw.catering.model.Buffet;
+import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.BuffetService;
+import it.uniroma3.siw.catering.service.PiattoService;
 
 @Controller
 public class BuffetController {
@@ -25,6 +27,9 @@ public class BuffetController {
 
 	@Autowired
 	private BuffetValidator buffetValidator;
+
+	@Autowired
+	private PiattoService piattoService;
 
 	/*
 	 * Convenzione: GET per le operazioni di lettura, POST per le operazioni di scrittura.
@@ -49,6 +54,39 @@ public class BuffetController {
 		}
 		return "admin/buffetForm.html";
 	}
+	
+	@GetMapping("/admin/addPiattoToBuffet/{buffetId}")
+	public String getPiatto(@PathVariable("buffetId") Long id,	Model model) {
+		Buffet buffet = this.buffetService.findById(id);
+		model.addAttribute("buffet", buffet);
+		model.addAttribute("piatti", this.piattoService.findAll());
+		model.addAttribute("piatto", new Piatto()); // necessario perché la pagina aggiungiPiattoAlBuffet.html si aspetta sempre 
+		// di avere un oggetto Piatto, anche vuoto, a disposizione
+		return "admin/aggiungiPiattoAlBuffet.html";
+	}
+	
+	@PostMapping("/admin/addPiattoToBuffet/{buffetId}")
+	public String addPiattoToBuffet(@PathVariable("buffetId") Long id, @Valid @ModelAttribute("piatto") Piatto piatto,
+			Model model, BindingResult bindingResult) {
+		Buffet buffet = this.buffetService.findById(id);
+		piatto.addBuffet(buffet);
+		buffet.addPiatto(piatto);
+		this.piattoService.save(piatto);
+		this.buffetService.save(buffet);
+		model.addAttribute("buffets", this.buffetService.findAll());
+		return "admin/buffets.html";
+	}
+	
+	@GetMapping("/admin/toRemovePiatto/{piattoId}/From/{buffetId}")
+	public String removePiattoById(@PathVariable("piattoId") Long piattoId, @PathVariable("buffetId") Long buffetId, Model model) {
+		Piatto piatto =  this.piattoService.findById(piattoId);
+		Buffet buffet =  this.buffetService.findById(buffetId);
+		piatto.removeBuffet(buffet);
+		buffet.removePiatto(piatto);
+		this.piattoService.save(piatto);
+		this.buffetService.save(buffet);
+		return this.getAdminBuffetById(buffet.getId(), model);
+	}
 
 	// richiede tutti i buffet (non viene specificato un id particolare)
 	@GetMapping("/admin/buffets")
@@ -71,6 +109,8 @@ public class BuffetController {
 	public String getAdminBuffetById(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
+		List<Piatto> piatti = buffet.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "admin/buffet.html";
 	}
 
@@ -79,6 +119,8 @@ public class BuffetController {
 	public String getUserBuffetById(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
+		List<Piatto> piatti = buffet.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "user/buffet.html";
 	}
 
