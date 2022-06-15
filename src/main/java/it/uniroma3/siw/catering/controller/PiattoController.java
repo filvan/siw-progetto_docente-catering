@@ -18,6 +18,7 @@ import it.uniroma3.siw.catering.controller.validator.PiattoValidator;
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
+import it.uniroma3.siw.catering.service.BuffetService;
 import it.uniroma3.siw.catering.service.IngredienteService;
 import it.uniroma3.siw.catering.service.PiattoService;
 
@@ -32,6 +33,9 @@ public class PiattoController {
 
 	@Autowired
 	private IngredienteService ingredienteService;
+
+	@Autowired
+	private BuffetService buffetService;
 
 	/*
 	 * Convenzione: GET per le operazioni di lettura, POST per le operazioni di scrittura.
@@ -157,6 +161,10 @@ public class PiattoController {
 	@GetMapping("/admin/confirmDeletePiatto/{id}")
 	public String confirmDeletePiattoById(@PathVariable("id") Long id, Model model) {
 		Piatto piatto =  this.piattoService.findById(id);
+		for (Buffet buffet : piatto.getBuffets()) {
+			buffet.removePiatto(piatto);
+			this.buffetService.save(buffet);
+		}
 		this.piattoService.delete(piatto);
 		return this.getAdminPiatti(model);
 	}

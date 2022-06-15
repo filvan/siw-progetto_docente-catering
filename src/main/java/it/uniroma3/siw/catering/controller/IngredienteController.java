@@ -17,6 +17,7 @@ import it.uniroma3.siw.catering.controller.validator.IngredienteValidator;
 import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.IngredienteService;
+import it.uniroma3.siw.catering.service.PiattoService;
 
 @Controller
 public class IngredienteController {
@@ -26,6 +27,9 @@ public class IngredienteController {
 
 	@Autowired
 	private IngredienteValidator ingredienteValidator;
+	
+	@Autowired
+	private PiattoService piattoService;
 
 	/*
 	 * Convenzione: GET per le operazioni di lettura, POST per le operazioni di scrittura.
@@ -105,6 +109,10 @@ public class IngredienteController {
 	@GetMapping("/admin/confirmDeleteIngrediente/{id}")
 	public String confirmDeleteIngredienteById(@PathVariable("id") Long id, Model model) {
 		Ingrediente ingrediente =  this.ingredienteService.findById(id);
+		for (Piatto piatto : ingrediente.getPiatti()) {
+			piatto.removeIngrediente(ingrediente);
+			this.piattoService.save(piatto);
+		}
 		this.ingredienteService.delete(ingrediente);
 		return this.getAdminIngredienti(model);
 	}
