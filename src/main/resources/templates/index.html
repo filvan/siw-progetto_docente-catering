@@ -4,17 +4,25 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>SIW Catering</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Homepage di SIW Catering</h4>
-		<div>
+		<h1>Homepage di <em>SIW Catering</em></h1>
+		<h2>Benvenuto in <em>SIW Catering</em>, il nuovissimo sistema informativo per gestire servizi di catering!</h2>
+		<div id="image">
+			<img src="images/catering.jpg" alt="A catering" width="70%" />
+		</div>
+		<p>
+			<span>Se sei un nuovo utente, registrati subito! Altrimenti accedi con le tue credenziali</span>
+		</p>
+		<p>
 			<a th:href="@{/login}">Accedi</a>
-		</div>
-		<div>
+		</p>
+		<p>
 			<a th:href="@{/register}">Registrati</a>
-		</div>
+		</p>
 	</div>
 </body>
 

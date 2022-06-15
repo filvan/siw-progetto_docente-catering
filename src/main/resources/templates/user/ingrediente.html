@@ -4,44 +4,51 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Dettagli ingrediente</title>
+	<link rel="stylesheet" href="/css/user.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Dettagli ingrediente</h4>
+		<h1>Dettagli ingrediente</h1>
+		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
+		<p>
 		<div>
-			<span>Nome: </span><span th:text="${ingrediente.nome}">Ingrediente</span>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${ingrediente.nome}">Ingrediente</strong>
 		</div>
 		<div>
-			<span>Origine: </span>
-			<span th:if="${!ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</span>
-			<span th:unless="${!ingrediente.origine.isEmpty()}">Non disponibile</span>
+			<!-- <span>Origine: </span> -->
+			<em th:unless="${ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</em>
 		</div>
 		<div>
-			<span>Descrizione: </span>
-			<span th:if="${!ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</span>
-			<span th:unless="${!ingrediente.descrizione.isEmpty()}">Non disponibile</span>
+			<!-- <span>Descrizione: </span> -->
+			<em th:unless="${ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</em>
 		</div>
 		<div>
-			<span>Elenco dei piatti in cui viene utilizzato questo ingrediente: </span>
-			<span th:if="${piatti.isEmpty()}">L'elenco non è disponibile</span>
-			<ul>
-				<li th:each="piatto : ${piatti}">
-					<a th:if="${piatto != null}" href="/user/piatto.html"
-						th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di prova</a>
-				</li>
-			</ul>
+			<p>
+				<span th:if="${piatti.isEmpty()}">Elenco dei piatti attualmente non disponibile</span>
+			<table>
+				<thead th:unless="${piatti.isEmpty()}">Elenco dei piatti in cui viene utilizzato questo ingrediente:
+				</thead>
+				<tr th:each="piatto : ${piatti}">
+					<td><a th:if="${piatto != null}" href="/user/piatto.html"
+							th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di
+							prova</a></td>
+				</tr>
+			</table>
+			</p>
 		</div>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/user/ingredienti">Elenco ingredienti</a>
+			<a href="/user/ingredienti">Torna all'elenco degli ingredienti</a>
 		</div>
 		<div>
-			<a href="/menu">Menù utente</a>
+			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

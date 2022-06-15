@@ -4,24 +4,29 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Elenco chef</title>
+	<link rel="stylesheet" href="/css/user.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Elenco chef:</h4>
-		<ul>
-			<li th:each="chef : ${chefs}">
-				<a href="user/chef.html" th:href="@{'/user/chef' + '/' + ${chef.id}}"
-					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a>
-			</li>
-		</ul>
+		<h1>Elenco chef</h1>
+		<img src="/images/chef.jpg" alt="A chef" width="70%" />
+		<p>
+		<table>
+			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
+			<tr th:each="chef : ${chefs}">
+				<td><a href="user/chef.html" th:href="@{'/user/chef' + '/' + ${chef.id}}"
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
+			</tr>
+		</table>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/menu">Menù utente</a>
+			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

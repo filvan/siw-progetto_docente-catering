@@ -4,16 +4,17 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Aggiungi ingrediente al piatto</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Aggiungi un ingrediente all'elenco degli ingredienti del piatto</h4>
+		<h1>Aggiungi un ingrediente all'elenco degli ingredienti del piatto</h1>
 		<span th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti da poter aggiungere!</span>
 		<form th:unless="${ingredienti.isEmpty()}" th:action="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}" method="POST" th:object="${ingrediente}">
 			<div>
 				<div>
-					<span><label for="seleziona-ingrediente">Scegli un ingrediente tra quelli presenti nell'elenco:</label><span>
+					<span><label for="seleziona-ingrediente">Scegli un ingrediente tra quelli presenti nell'elenco</label><span>
 							<span><select name="ingrediente" id="seleziona-ingrediente">
 									<option disabled=true>--Per favore, scegli un ingrediente--</option>
 									<option th:each="i : ${ingredienti}" th:text="${i.nome}" th:value="${i.id}">
@@ -28,13 +29,13 @@
 	</div>
 	<footer>
 		<div>
-			<a href="/admin/piatti">Elenco piatti</a>
+			<a href="/admin/piatti">Torna all'elenco dei piatti</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

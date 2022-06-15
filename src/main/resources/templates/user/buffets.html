@@ -4,24 +4,29 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Elenco buffet</title>
+	<link rel="stylesheet" href="/css/user.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Elenco buffet:</h4>
-		<ul>
-			<li th:each="buffet : ${buffets}">
-				<a href="user/buffet.html" th:href="@{'/user/buffet' + '/' + ${buffet.id}}"
-					th:text="${buffet.nome}">Buffet di prova</a>
-			</li>
-		</ul>
+		<h1>Elenco buffet</h1>
+		<img src="/images/buffet.jpg" alt="A buffet">
+		<p>
+		<table>
+			<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
+			<tr th:each="buffet : ${buffets}" th:unless="${buffet.piatti.isEmpty()}">
+				<td><a href="user/buffet.html" th:href="@{'/user/buffet' + '/' + ${buffet.id}}"
+					th:text="${buffet.nome}">Buffet di prova</a></td>
+			</tr>
+		</table>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/menu">Menù utente</a>
+			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

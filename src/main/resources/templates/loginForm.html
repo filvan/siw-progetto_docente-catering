@@ -4,31 +4,33 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Login</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Login</h4>
+		<h1>Login</h1>
 	</div>
 	<form th:action="@{/login}" method="POST">
-		<div>
-			<div>
-				<span>Username:</span>
-				<span><input name="username" type="text" required /></span>
-			</div>
-			<div>
-				<span>Password:</span>
-				<span><input name="password" type="password" required /></span>
-			</div>
-			<div>
-				<span><button type="submit">Login</button></span>
-			</div>
-		</div>
+		<table>
+			<tr>
+				<td>Username</td>
+				<td><input name="username" type="text" required /></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input name="password" type="password" required /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Login</button></td>
+			</tr>
+		</table>
 	</form>
 	<footer>
-		<div>
-			<a href="/">Home</a>
-		</div>
+		<p>
+			<a href="/">Torna alla home</a>
+		</p>
 	</footer>
 </body>
 

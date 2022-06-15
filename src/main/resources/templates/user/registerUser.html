@@ -4,12 +4,14 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Registrazione</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Registrazione</h4>
+		<h1>Registrazione</h1>
 		<form th:action="@{/register}" method="POST">
+			<p>
 			<table>
 				<tr>
 					<td>Username</td>
@@ -35,12 +37,11 @@
 					<td th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:red'">
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<button type="submit">Registra</button>
-					</td>
-				</tr>
 			</table>
+			<p>
+			<div>
+				<span><button type="submit">Registra</button></span>
+			</div>
 		</form>
 	</div>
 	<footer>

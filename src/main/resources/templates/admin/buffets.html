@@ -4,28 +4,33 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Elenco buffet</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Elenco buffet:</h4>
-		<ul>
-			<li th:each="buffet : ${buffets}">
-				<a href="admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
-					th:text="${buffet.nome}">Buffet di prova</a>
+		<h1>Elenco buffet:</h1>
+		<img src="/images/buffet.jpg" alt="A buffet">
+		<p>
+		<table>
+			<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
+			<tr th:each="buffet : ${buffets}">
+				<td><a href="admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
+					th:text="${buffet.nome}">Buffet di prova</a></td>
 				<!--- <a href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
 					th:text="Cancella">Cancella</a> -->
-				<a href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
-					th:text="Cancella">Cancella</a>
-			</li>
-		</ul>
+				<td><a class="button" href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
+					th:text="Cancella">Cancella</a></td>
+			</tr>
+		</table>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

@@ -4,36 +4,38 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Conferma cancellazione buffet</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Buffet da cancellare:</h4>
+		<h1>Buffet da cancellare</h1>
+		<img src="/images/buffet.jpg" alt="A buffet" width="70%" />
+		<p>
 		<div>
-			<div>
-				<span>Nome: </span><span th:text="${buffet.nome}">Buffet</span>
-			</div>
-			<div>
-				<span>Descrizione: </span>
-				<span th:if="${!buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</span>
-				<span th:unless="${!buffet.descrizione.isEmpty()}">Non disponibile</span>
-			</div>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${buffet.nome}">Buffet</strong>
 		</div>
 		<div>
+			<!-- <span>Descrizione: </span> -->
+			<em th:unless="${buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</em>
+		</div>
+		</p>
+		<p>
 			<strong>Confermi di voler cancellare questo buffet?</strong>
-			<a href="admin/buffets.html" th:href="@{'/admin/confirmDeleteBuffet'+ '/' + ${buffet.id}}"
+			<a class="button" href="admin/buffets.html" th:href="@{'/admin/confirmDeleteBuffet'+ '/' + ${buffet.id}}"
 				th:text="Conferma">Conferma</a>
-		</div>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/admin/buffets">Elenco buffet</a>
+			<a href="/admin/buffets">Torna all'elenco dei buffet</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

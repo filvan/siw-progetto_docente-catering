@@ -4,46 +4,52 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Dettagli buffet</title>
+	<link rel="stylesheet" href="/css/user.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Dettagli buffet</h4>
+		<h1>Dettagli buffet</h1>
+		<img src="/images/buffet.jpg" alt="A buffet" width="70%" />
+		<p>
 		<div>
-			<span>Nome: </span><span th:text="${buffet.nome}">Buffet</span>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${buffet.nome}">Buffet</strong>
 		</div>
 		<div>
-			<span>Descrizione: </span>
-			<span th:if="${!buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</span>
-			<span th:unless="${!buffet.descrizione.isEmpty()}">Non disponibile</span>
+			<!-- <span>Descrizione: </span> -->
+			<em th:unless="${buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</em>
 		</div>
 		<div>
-			<span>Elenco dei piatti: </span>
-			<span th:if="${piatti.isEmpty()}">L'elenco non è disponibile</span>
-			<ul>
-				<li th:each="piatto : ${piatti}">
-					<a th:if="${piatto != null}" href="/user/piatto.html"
-						th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di prova</a>
-				</li>
-			</ul>
+			<p>
+				<span th:if="${piatti.isEmpty()}">attualmente non disponibile</span>
+			<table>
+				<thead th:unless="${piatti.isEmpty()}">Elenco dei piatti: </thead>
+				<tr th:each="piatto : ${piatti}">
+					<td><a th:if="${piatto != null}" href="/user/piatto.html"
+							th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di
+							prova</a></td>
+				</tr>
+			</table>
+			</p>
 		</div>
-		<div>
-			<span>Proposto dallo chef: </span>
-			<a th:if="${buffet.chef != null}" href="/user/chef.html"
-				th:href="@{'/user/chef' + '/' + ${buffet.chef.id}}"
+		</p>
+		<p>
+			<span th:if="${buffet.chef != null}">Proposto dallo chef </span>
+			<a th:if="${buffet.chef != null}" href="/user/chef.html" th:href="@{'/user/chef' + '/' + ${buffet.chef.id}}"
 				th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Chef</a>
-			<span th:unless="${buffet.chef != null}">Non disponibile</span>
-		</div>
+			<!-- <span th:unless="${buffet.chef != null}">attualmente non disponibile</span> -->
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/user/buffets">Elenco buffet</a>
+			<a href="/user/buffets">Torna all'elenco dei buffet</a>
 		</div>
 		<div>
-			<a href="/menu">Menù utente</a>
+			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

@@ -4,51 +4,60 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Dettagli piatto</title>
+	<link rel="stylesheet" href="/css/user.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Dettagli piatto</h4>
+		<h1>Dettagli piatto</h1>
+		<img src="/images/piatto.jpg" alt="A course" width="70%" />
+		<p>
 		<div>
-			<span>Nome: </span><span th:text="${piatto.nome}">Piatto</span>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${piatto.nome}">Piatto</strong>
 		</div>
 		<div>
-			<span>Descrizione: </span>
-			<span th:if="${!piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</span>
-			<span th:unless="${!piatto.descrizione.isEmpty()}">Non disponibile</span>
+			<!-- <span>Descrizione: </span> -->
+			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
 		</div>
 		<div>
-			<span>Elenco dei buffet in cui è presente questo piatto: </span>
-			<span th:if="${buffets.isEmpty()}">L'elenco non è disponibile</span>
-			<ul>
-				<li th:each="buffet : ${buffets}">
-					<a th:if="${buffet != null}" href="/user/buffet.html"
-						th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di prova</a>
-				</li>
-			</ul>
+			<p>
+				<!-- <span th:if="${buffets.isEmpty()}">attualmente non disponibile</span> -->
+			<table>
+				<thead th:unless="${buffets.isEmpty()}">Elenco dei buffet in cui è presente questo piatto: </thead>
+				<tr th:each="buffet : ${buffets}">
+					<td><a th:if="${buffet != null}" href="/user/buffet.html"
+							th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di
+							prova</a></td>
+				</tr>
+			</table>
+			</p>
 		</div>
 		<div>
-			<span>Elenco degli ingredienti: </span>
-			<span th:if="${ingredienti.isEmpty()}">L'elenco non è disponibile</span>
-			<ul>
-				<li th:each="ingrediente : ${ingredienti}">
-					<a th:if="${ingrediente != null}" href="/user/ingrediente.html"
-						th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}"
-						th:text="${ingrediente.nome}">Ingrediente di prova</a>
-					
-				</li>
-			</ul>
+			<p>
+				<span th:if="${ingredienti.isEmpty()}">Elenco degli ingredienti attualmente non disponibile</span>
+			<table>
+				<thead th:unless="${ingredienti.isEmpty()}">Elenco degli ingredienti: </thead>
+				<tr th:each="ingrediente : ${ingredienti}">
+					<td><a th:if="${ingrediente != null}" href="/user/ingrediente.html"
+							th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}"
+							th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
+
+				</tr>
+			</table>
+			</p>
 		</div>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/user/piatti">Elenco piatti</a>
+			<a href="/user/piatti">Torna all'elenco dei piatti</a>
 		</div>
 		<div>
-			<a href="/menu">Menù utente</a>
+			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

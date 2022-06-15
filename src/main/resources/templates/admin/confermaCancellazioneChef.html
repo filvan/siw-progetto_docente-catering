@@ -4,37 +4,40 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Conferma cancellazione chef</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Chef da cancellare:</h4>
+		<h1>Chef da cancellare</h1>
+		<img src="/images/chef.jpg" alt="A chef" width="70%" />
+		<p>
 		<div>
-			<div>
-				<span>Nome: </span><span th:text="${chef.nome}">Raffaello</span>
-			</div>
-			<div>
-				<span>Cognome: </span><span th:text="${chef.cognome}">Sanzio</span>
-			</div>
-			<div>
-				<span>Nazionalità: </span><span th:text="${chef.nazionalita}">non disponibile</span>
-			</div>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${chef.nome}">Raffaello</strong>
+			<!-- <span>Cognome: </span> -->
+			<strong th:text="${chef.cognome}">Sanzio</strong>
 		</div>
 		<div>
+			<!-- <span>Nazionalità: </span> -->
+			<em th:unless="${chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</em>
+		</div>
+		</p>
+		<p>
 			<strong>Confermi di voler cancellare questo chef?</strong>
-			<a href="admin/chefs.html" th:href="@{'/admin/confirmDeleteChef'+ '/' + ${chef.id}}"
+			<a class="button" href="admin/chefs.html" th:href="@{'/admin/confirmDeleteChef'+ '/' + ${chef.id}}"
 				th:text="Conferma">Conferma</a>
-		</div>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/admin/chefs">Elenco chef</a>
+			<a href="/admin/chefs">Torna all'elenco degli chef</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

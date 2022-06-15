@@ -4,49 +4,55 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Dettagli chef</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Dettagli chef</h4>
+		<h1>Dettagli chef</h1>
+		<img src="/images/chef.jpg" alt="A chef" width="70%" />
+		<p>
 		<div>
-			<span>Nome: </span><span th:text="${chef.nome}">Raffaello</span>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${chef.nome}">Raffaello</strong>
+			<!-- <span>Cognome: </span> -->
+			<strong th:text="${chef.cognome}">Sanzio</strong>
 		</div>
 		<div>
-			<span>Cognome: </span><span th:text="${chef.cognome}">Sanzio</span>
+			<!-- <span>Nazionalità: </span> -->
+			<em th:unless="${chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</em>
 		</div>
 		<div>
-			<span>Nazionalità: </span>
-			<span th:if="${!chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</span>
-			<span th:unless="${!chef.nazionalita.isEmpty()}">Non disponibile</span>
+			<p>
+			<span th:if="${buffets.isEmpty()}">Non ci sono buffet per questo chef</span>
+			<table>
+				<thead th:unless="${buffets.isEmpty()}">Elenco dei buffet proposti da questo chef: </thead>
+				<tr th:each="buffet : ${buffets}">
+					<td><a th:if="${buffet != null}" href="/admin/buffet.html"
+							th:href="@{'/admin/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di
+							prova</a></td>
+					<td><a class="button" th:href="@{'/admin/toRemoveBuffet' + '/' + ${buffet.id}}"
+							th:text="Rimuovi">Rimuovi</a></td>
+				</tr>
+			</table>
+			</p>
 		</div>
+		</p>
 		<div>
-			<span>Elenco dei buffet proposti da questo chef: </span>
-			<span th:if="${buffets.isEmpty()}">Questo chef non ha ancora proposto nessun buffet</span>
-			<ul>
-				<li th:each="buffet : ${buffets}">
-					<a th:if="${buffet != null}" href="/admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
-						th:text="${buffet.nome}">Buffet di prova</a>
-					<a th:href="@{'/admin/toRemoveBuffet' + '/' + ${buffet.id}}"
-					th:text="Rimuovi">Rimuovi</a>
-				</li>
-			</ul>
-		</div>
-		<div>
-			<a href="/admin/aggiungiBuffetAlloChef.html" th:href="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}"
-				th:text="Aggiungi + ' ' + un + ' ' + buffet + ' ' + a + ' ' + quelli + ' ' + proposti + ' ' + da + ' ' + questo + ' ' + chef">Aggiungi
-				buffet</a>
+			<a href="/admin/aggiungiBuffetAlloChef.html"
+				th:href="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}">Aggiungi un buffet a quelli proposti da questo
+				chef</a>
 		</div>
 	</div>
 	<footer>
 		<div>
-			<a href="/admin/chefs">Elenco chef</a>
+			<a href="/admin/chefs">Torna all'elenco degli chef</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

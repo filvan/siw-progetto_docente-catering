@@ -4,39 +4,46 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Inserimento ingrediente</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
-	<h4>Inserisci un ingrediente</h4>
+	<h1>Inserisci un ingrediente</h1>
+	<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
 	<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<span>Nome:</span>
-			<span><input type="text" th:field="${ingrediente.nome}" /></span>
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{ingrediente.nome}"></span>
-		</div>
-		<div>
-			<span>Origine:</span>
-			<span><input type="text" th:field="${ingrediente.origine}" /></span>
-			<span th:if="${#fields.hasErrors('origine')}" th:errors="*{ingrediente.origine}"></span>
-		</div>
-		<div>
-			<span>Descrizione:</span>
-			<span><input type="text" th:field="${ingrediente.descrizione}" /></span>
-			<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{ingrediente.descrizione}"></span>
-		</div>
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
+		<p>
+		<table>
+			<tr th:if="${#fields.hasGlobalErrors()}">
+				  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			</tr>
+			<tr>
+				<td>Nome</td>
+				<td><input type="text" th:field="${ingrediente.nome}" /></td>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{ingrediente.nome}"></span>
+			</tr>
+			<tr>
+				<td>Origine</td>
+				<td><input type="text" th:field="${ingrediente.origine}" /></td>
+				<span th:if="${#fields.hasErrors('origine')}" th:errors="*{ingrediente.origine}"></span>
+			</tr>
+			<tr>
+				<td>Descrizione</td>
+				<td><input type="text" th:field="${ingrediente.descrizione}" /></td>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{ingrediente.descrizione}"></span>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Conferma</button></td>
+			</tr>
+		</table>
+		</p>
 	</form>
 	<footer>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

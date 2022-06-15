@@ -4,28 +4,33 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Elenco chef</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Elenco chef:</h4>
-		<ul>
-			<li th:each="chef : ${chefs}">
-				<a href="admin/chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}"
-					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a>
-				<!--- <a href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
-					th:text="Cancella">Cancella</a> -->
-				<a href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
-					th:text="Cancella">Cancella</a>
-			</li>
-		</ul>
+		<h1>Elenco chef</h1>
+		<img src="/images/chef.jpg" alt="A chef" width="70%" />
+		<p>
+		<table>
+			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
+			<tr th:each="chef : ${chefs}">
+				<td><a href="admin/chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}"
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
+				<!--- <td><a href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
+					th:text="Cancella">Cancella</a></td> -->
+				<td><a class="button" href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
+					th:text="Cancella">Cancella</a></td>
+			</tr>
+		</table>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

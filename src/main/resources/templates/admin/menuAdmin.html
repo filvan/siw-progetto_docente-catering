@@ -1,42 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="htttr://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
 	<title>Menù amministratore</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
-	<div>
-		<h4>Menù amministratore</h4>
-		<div>
-			<a href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a>
-   		</div>
-		<div>
-			<a href="admin/buffet" th:href="@{/admin/buffets}">Elenco buffet</a>
-   		</div>
-   		<div>
-			<a href="admin/chefForm" th:href="@{/admin/chef}">Inserisci uno chef</a>
-   		</div>
-		<div>
-			<a href="admin/chef" th:href="@{/admin/chefs}">Elenco chef</a>
-   		</div>
-   		<div>
-			<a href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci un piatto</a>
-   		</div>
-		<div>
-			<a href="admin/piatto" th:href="@{/admin/piatti}">Elenco piatti</a>
-   		</div>
-   		<div>
-			<a href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci un ingrediente</a>
-   		</div>
-		<div>
-			<a href="admin/ingrediente" th:href="@{/admin/ingredienti}">Elenco ingredienti</a>
-   		</div>
-		<div>
-			<a th:href="@{/logout}">Logout</a>
-		</div>
-	</div>
+	<p>
+	<table>
+		<thead>
+			<h1>Menù amministratore</h1>
+		</thead>
+		<tr>
+			<td><a href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/buffet" th:href="@{/admin/buffets}">Elenco buffet</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/chefForm" th:href="@{/admin/chef}">Inserisci uno chef</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/chef" th:href="@{/admin/chefs}">Elenco chef</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci un piatto</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/piatto" th:href="@{/admin/piatti}">Elenco piatti</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci un ingrediente</a></td>
+		</tr>
+		<tr>
+			<td><a href="admin/ingrediente" th:href="@{/admin/ingredienti}">Elenco ingredienti</a></td>
+		</tr>
+	</table>
+	</p>
+	<p>
+		<a th:href="@{/logout}">Logout</a>
+	</p>
 </body>
 
 </html>

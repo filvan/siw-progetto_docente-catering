@@ -4,34 +4,41 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Inserimento piatto</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
-	<h4>Inserisci un piatto</h4>
+	<h1>Inserisci un piatto</h1>
+	<img src="/images/piatto.jpg" alt="A course" width="70%" />
 	<form th:action="@{/admin/piatto}" method="POST" th:object="${piatto}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<span>Nome:</span>
-			<span><input type="text" th:field="${piatto.nome}" /></span>
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{piatto.nome}"></span>
-		</div>
-		<div>
-			<span>Descrizione:</span>
-			<span><input type="text" th:field="${piatto.descrizione}" /></span>
-			<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{piatto.descrizione}"></span>
-		</div>
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
+		<p>
+		<table>
+			<tr th:if="${#fields.hasGlobalErrors()}">
+				  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			</tr>
+			<tr>
+				<td>Nome</td>
+				<td><input type="text" th:field="${piatto.nome}" /></td>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{piatto.nome}"></span>
+			</tr>
+			<tr>
+				<td>Descrizione</td>
+				<td><input type="text" th:field="${piatto.descrizione}" /></td>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{piatto.descrizione}"></span>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Conferma</button></td>
+			</tr>
+		</table>
+		</p>
 	</form>
 	<footer>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

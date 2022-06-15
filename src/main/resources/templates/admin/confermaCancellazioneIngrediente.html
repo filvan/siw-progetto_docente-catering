@@ -4,41 +4,42 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Conferma cancellazione ingrediente</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
 	<div>
-		<h4>Ingrediente da cancellare:</h4>
+		<h1>Ingrediente da cancellare</h1>
+		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
+		<p>
 		<div>
-			<div>
-				<span>Nome: </span><span th:text="${ingrediente.nome}">Ingrediente</span>
-			</div>
-			<div>
-				<span>Origine: </span>
-				<span th:if="${!ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</span>
-				<span th:unless="${!ingrediente.origine.isEmpty()}">Non disponibile</span>
-			</div>
-			<div>
-				<span>Descrizione: </span>
-				<span th:if="${!ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</span>
-				<span th:unless="${!ingrediente.descrizione.isEmpty()}">Non disponibile</span>
-			</div>
+			<!-- <span>Nome: </span> -->
+			<strong th:text="${ingrediente.nome}">Ingrediente</strong>
 		</div>
 		<div>
+			<!-- <span>Origine: </span> -->
+			<em th:unless="${ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</em>
+		</div>
+		<div>
+			<!-- <span>Descrizione: </span> -->
+			<em th:unless="${ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</em>
+		</div>
+		</p>
+		<p>
 			<strong>Confermi di voler cancellare quest'ingrediente?</strong>
-			<a href="admin/ingredienti.html" th:href="@{'/admin/confirmDeleteIngrediente'+ '/' + ${ingrediente.id}}"
-				th:text="Conferma">Conferma</a>
-		</div>
+			<a class="button" href="admin/ingredienti.html"
+				th:href="@{'/admin/confirmDeleteIngrediente'+ '/' + ${ingrediente.id}}" th:text="Conferma">Conferma</a>
+		</p>
 	</div>
 	<footer>
 		<div>
-			<a href="/admin/ingredienti">Elenco ingredienti</a>
+			<a href="/admin/ingredienti">Torna all'elenco degli ingredienti</a>
 		</div>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

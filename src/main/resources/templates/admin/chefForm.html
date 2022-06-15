@@ -4,39 +4,46 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Inserimento chef</title>
+	<link rel="stylesheet" href="/css/buffet.css" />
 </head>
 
 <body>
-	<h4>Inserisci uno chef</h4>
+	<h1>Inserisci uno chef</h1>
+	<img src="/images/chef.jpg" alt="A chef" width="70%" />
 	<form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<span>Nome:</span>
-			<span><input type="text" th:field="*{nome}" /></span>
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-		</div>
-		<div>
-			<span>Cognome:</span>
-			<span><input type="text" th:field="*{cognome}" /></span>
-			<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-		</div>
-		<div>
-			<span>Nazionalità:</span>
-			<span><input type="text" th:field="*{nazionalita}" /></span>
-			<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
-		</div>
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
+		<p>
+		<table>
+			<tr th:if="${#fields.hasGlobalErrors()}">
+				  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			</tr>
+			<tr>
+				<td>Nome</td>
+				<td><input type="text" th:field="*{nome}" /></td>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</tr>
+			<tr>
+				<td>Cognome</td>
+				<td><input type="text" th:field="*{cognome}" /></td>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+			</tr>
+			<tr>
+				<td>Nazionalità</td>
+				<td><input type="text" th:field="*{nazionalita}" /></td>
+				<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Conferma</button></td>
+			</tr>
+		</table>
+		</p>
 	</form>
 	<footer>
 		<div>
-			<a href="/menu">Menù amministratore</a>
+			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
-			<a href="/">Home</a>
+			<a href="/">Torna alla home</a>
 		</div>
 	</footer>
 </body>

@@ -4,27 +4,37 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Menù utente</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
-	<div>
-		<h4>Menù utente</h4>
-		<div>
-			<a href="user/buffet" th:href="@{/user/buffets}">Elenco buffet</a>
-		</div>
-		<div>
-			<a href="user/chef" th:href="@{/user/chefs}">Elenco chef</a>
-		</div>
-		<div>
-			<a href="user/piatto" th:href="@{/user/piatti}">Elenco piatti</a>
-		</div>
-		<div>
-			<a href="user/ingrediente" th:href="@{/user/ingredienti}">Elenco ingredienti</a>
-		</div>
-		<div>
-			<a th:href="@{/logout}">Logout</a>
-		</div>
-	</div>
+	<p>
+	<table>
+		<thead>
+			<h1>Menù utente</h1>
+		</thead>
+		<tr>
+			<td>Consulta la lista dei buffet disponibili: </td>
+			<td><a href="user/buffet" th:href="@{/user/buffets}">Elenco buffet</a></td>
+		</tr>
+		<tr>
+			<td>Consulta la lista degli chef che collaborano con noi: </td>
+			<td><a href="user/chef" th:href="@{/user/chefs}">Elenco chef</a></td>
+		</tr>
+		<tr>
+			<td>Consulta la lista dei piatti offerti: </td>
+			<td><a href="user/piatto" th:href="@{/user/piatti}">Elenco piatti</a></td>
+		</tr>
+		<tr>
+			<td>Consulta la lista degli ingredienti utilizzati: </td>
+			<td><a href="user/ingrediente" th:href="@{/user/ingredienti}">Elenco ingredienti</a></td>
+		</tr>
+	</table>
+	</p>
+	<p>
+		<a th:href="@{/logout}">Logout</a>
+	</p>
+
 </body>
 
 </html>
