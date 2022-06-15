@@ -4,17 +4,19 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Aggiungi ingrediente al piatto</title>
-	<link rel="stylesheet" href="/css/buffet.css" />
+	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
 	<div>
 		<h1>Aggiungi un ingrediente all'elenco degli ingredienti del piatto</h1>
 		<span th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti da poter aggiungere!</span>
-		<form th:unless="${ingredienti.isEmpty()}" th:action="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}" method="POST" th:object="${ingrediente}">
+		<form th:unless="${ingredienti.isEmpty()}" th:action="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}"
+			method="POST" th:object="${ingrediente}">
 			<div>
 				<div>
-					<span><label for="seleziona-ingrediente">Scegli un ingrediente tra quelli presenti nell'elenco</label><span>
+					<span><label for="seleziona-ingrediente">Scegli un ingrediente tra quelli presenti
+							nell'elenco</label><span>
 							<span><select name="ingrediente" id="seleziona-ingrediente">
 									<option disabled=true>--Per favore, scegli un ingrediente--</option>
 									<option th:each="i : ${ingredienti}" th:text="${i.nome}" th:value="${i.id}">
@@ -28,6 +30,9 @@
 		</form>
 	</div>
 	<footer>
+		<div>
+			<a th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" th:text="Torna + ' ' + a + ' ' + ${piatto.nome}"></a>
+		</div>
 		<div>
 			<a href="/admin/piatti">Torna all'elenco dei piatti</a>
 		</div>

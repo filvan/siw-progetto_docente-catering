@@ -1,5 +1,6 @@
 package it.uniroma3.siw.catering.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -27,7 +28,7 @@ public class IngredienteController {
 
 	@Autowired
 	private IngredienteValidator ingredienteValidator;
-	
+
 	@Autowired
 	private PiattoService piattoService;
 
@@ -62,10 +63,26 @@ public class IngredienteController {
 		return "admin/ingredienti.html";
 	}
 
-	// richiede tutti gli ingredienti (non viene specificato un id particolare)
+	/* L'utente è interessato solo agli ingredienti utilizzati in un piatto di un buffet.
+	 * Gli altri ingredienti possono comparire nell'ambiente dell'amministratore ma,
+	 * finchè i rispettivi piatti non vengono inseriti in un buffet, è come se fossero in uno stato inconsistente e,
+	 * perciò, non devono comparire nell'ambiente dell'utente */
+	
 	@GetMapping("/user/ingredienti")
 	public String getUserIngredienti(Model model) {
 		List<Ingrediente> ingredienti = this.ingredienteService.findAll();
+
+		for (Iterator<Ingrediente> iterator = ingredienti.iterator(); iterator.hasNext();) {
+			int numeroPiattiAssentiDaOgniBuffet = 0;
+			Ingrediente ingrediente = (Ingrediente) iterator.next();
+			List<Piatto> piatti = ingrediente.getPiatti();
+			for(Piatto piatto : piatti)
+				if (piatto.getBuffets().size() == 0)
+					numeroPiattiAssentiDaOgniBuffet++;
+			if (piatti.size() == numeroPiattiAssentiDaOgniBuffet)
+				iterator.remove();
+		}
+
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/ingredienti.html";
 	}

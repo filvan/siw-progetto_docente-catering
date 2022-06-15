@@ -3,12 +3,12 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Inserimento buffet</title>
+	<title>Modifica buffet</title>
 	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
-	<h1>Inserisci un buffet</h1>
+	<h1>Modifica il buffet</h1>
 	<img src="/images/buffet.jpg" alt="A buffet" width="70%" />
 	<form th:action="@{/admin/buffet}" method="POST" th:object="${buffet}">
 		<p>
@@ -19,12 +19,12 @@
 			<tr>
 				<td>Nome</td>
 				<td><input type="text" required th:field="${buffet.nome}" /></td>
-				<td th:if="${#fields.hasErrors('nome')}" th:errors="*{buffet.nome}"></td>
+				<td th:if="${#fields.hasErrors('nome')}" th:errors="*{buffet.nome}" th:style="'color:red'"></td>
 			</tr>
 			<tr>
 				<td>Descrizione</td>
 				<td><input type="text" th:field="${buffet.descrizione}" /></td>
-				<td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{buffet.descrizione}"></td>
+				<td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{buffet.descrizione}" th:style="'color:red'"></td>
 			</tr>
 			<tr>
 				<!-- <span><label for="seleziona-chef">Buffet proposto dallo chef:</label><span>
@@ -37,6 +37,7 @@
 			<tr>
 				<td></td>
 				<td><button type="submit">Conferma</button></td>
+				<td><input type="hidden" th:field="${buffet.id}" /></td>
 			</tr>
 		</table>
 		</p>

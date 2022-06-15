@@ -1,5 +1,5 @@
 body {
-  	font-family: Comic;
+  	font-family: Helvetica;
   	background-color: white;
   	text-align: center;
   	font-size: 150%;
@@ -28,6 +28,7 @@ a.button {
 	font-size: 75%;
 	padding-top: -10px;
 	padding-bottom: -10px;
+	margin-left: 15px;
 	color: black;
 	border: solid;
     background-color: lightgrey;

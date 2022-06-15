@@ -4,26 +4,29 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Elenco buffet</title>
-	<link rel="stylesheet" href="/css/buffet.css" />
+	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
 	<div>
-		<h1>Elenco buffet:</h1>
+		<h1>Elenco buffet</h1>
 		<img src="/images/buffet.jpg" alt="A buffet">
 		<p>
 		<table>
-			<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
+		<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
 			<tr th:each="buffet : ${buffets}">
 				<td><a href="admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
-					th:text="${buffet.nome}">Buffet di prova</a></td>
-				<!--- <a href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
-					th:text="Cancella">Cancella</a> -->
-				<td><a class="button" href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
-					th:text="Cancella">Cancella</a></td>
+						th:text="${buffet.nome}">Buffet di prova</a></td>
+				<!--- <td><a href="confermaCancellazioneBuffet.html" th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}"
+					th:text="Cancella">Cancella</a></td> -->
+				<td><a class="button" href="confermaCancellazioneBuffet.html"
+						th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}" th:text="Cancella">Cancella</a></td>
+				<!-- <td><a class="button" href="buffetForm2.html"
+						th:href="@{'/admin/modifyBuffet' + '/' + ${buffet.id}}" th:text="Modifica">Modifica</a></td> -->
 			</tr>
 		</table>
 		</p>
+		<a href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a>
 	</div>
 	<footer>
 		<div>

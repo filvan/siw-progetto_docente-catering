@@ -4,14 +4,15 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Aggiungi piatto al buffet</title>
-	<link rel="stylesheet" href="/css/buffet.css" />
+	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
 	<div>
 		<h1>Aggiungi un piatto all'elenco dei piatti del buffet</h1>
 		<span th:if="${piatti.isEmpty()}">Non ci sono piatti da poter aggiungere!</span>
-		<form th:unless="${piatti.isEmpty()}" th:action="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}" method="POST" th:object="${piatto}">
+		<form th:unless="${piatti.isEmpty()}" th:action="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}"
+			method="POST" th:object="${piatto}">
 			<div>
 				<div>
 					<span><label for="seleziona-piatto">Scegli un piatto tra quelli presenti nell'elenco</label><span>
@@ -28,6 +29,10 @@
 		</form>
 	</div>
 	<footer>
+		<div>
+			<a th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
+				th:text="Torna + ' ' + al + ' ' + buffet + ' ' + ${buffet.nome}"></a>
+		</div>
 		<div>
 			<a href="/admin/buffets">Torna all'elenco dei buffet</a>
 		</div>

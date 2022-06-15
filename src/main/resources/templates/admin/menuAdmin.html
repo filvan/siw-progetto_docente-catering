@@ -9,39 +9,40 @@
 
 <body>
 	<p>
+	<h1>Menù amministratore</h1>
+	<section class="text-center">
+		<div>Parti dagli ingredienti</div>
+		<div>Poi inserisci i piatti</div>
+		<div>Infine i buffet e gli chef</div>
+	</section>
+	<p>
 	<table>
-		<thead>
-			<h1>Menù amministratore</h1>
-		</thead>
 		<tr>
-			<td><a href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a></td>
+			<td>Ingrediente</td>
+			<td><a class="button" href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci</a></td>
+			<td><a class="button" href="admin/ingrediente" th:href="@{/admin/ingredienti}">Visualizza</a></td>
 		</tr>
 		<tr>
-			<td><a href="admin/buffet" th:href="@{/admin/buffets}">Elenco buffet</a></td>
+			<td>Piatto</td>
+			<td><a class="button" href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci</a></td>
+			<td><a class="button" href="admin/piatto" th:href="@{/admin/piatti}">Visualizza</a></td>
 		</tr>
 		<tr>
-			<td><a href="admin/chefForm" th:href="@{/admin/chef}">Inserisci uno chef</a></td>
+			<td>Buffet</td>
+			<td><a class="button" href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci</a></td>
+			<td><a class="button" href="admin/buffet" th:href="@{/admin/buffets}">Visualizza</a></td>
 		</tr>
 		<tr>
-			<td><a href="admin/chef" th:href="@{/admin/chefs}">Elenco chef</a></td>
-		</tr>
-		<tr>
-			<td><a href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci un piatto</a></td>
-		</tr>
-		<tr>
-			<td><a href="admin/piatto" th:href="@{/admin/piatti}">Elenco piatti</a></td>
-		</tr>
-		<tr>
-			<td><a href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci un ingrediente</a></td>
-		</tr>
-		<tr>
-			<td><a href="admin/ingrediente" th:href="@{/admin/ingredienti}">Elenco ingredienti</a></td>
+			<td>Chef</td>
+			<td><a class="button" href="admin/chefForm" th:href="@{/admin/chef}">Inserisci</a></td>
+			<td><a class="button" href="admin/chef" th:href="@{/admin/chefs}">Visualizza</a></td>
 		</tr>
 	</table>
 	</p>
-	<p>
-		<a th:href="@{/logout}">Logout</a>
 	</p>
+	<footer>
+		<a th:href="@{/logout}">Logout</a>
+	</footer>
 </body>
 
 </html>

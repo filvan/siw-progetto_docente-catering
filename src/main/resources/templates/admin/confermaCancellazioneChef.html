@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Conferma cancellazione chef</title>
-	<link rel="stylesheet" href="/css/buffet.css" />
+	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 		</div>
 		</p>
 		<p>
-			<strong>Confermi di voler cancellare questo chef?</strong>
+			<strong>Confermi di voler cancellare questo chef ?</strong>
 			<a class="button" href="admin/chefs.html" th:href="@{'/admin/confirmDeleteChef'+ '/' + ${chef.id}}"
 				th:text="Conferma">Conferma</a>
 		</p>

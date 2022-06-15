@@ -43,6 +43,13 @@ public class BuffetController {
 													// di avere un oggetto Buffet, anche vuoto, a disposizione
 		return "admin/buffetForm.html";
 	}
+	
+//	@GetMapping("/admin/modifyBuffet/{id}")
+//	public String modifyBuffet(@PathVariable("id") Long id, Model model) {
+//		Buffet buffet =  this.buffetService.findById(id);
+//		model.addAttribute("buffet", buffet);
+//		return "admin/buffetForm2.html";
+//	}
 
 	@PostMapping("/admin/buffet")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet,
@@ -83,8 +90,7 @@ public class BuffetController {
 		buffet.addPiatto(piatto);
 		this.piattoService.save(piatto);
 		this.buffetService.save(buffet);
-		model.addAttribute("buffets", this.buffetService.findAll());
-		return "admin/buffets.html";
+		return this.getPiatto(id, model);
 	}
 	
 	@GetMapping("/admin/toRemovePiatto/{piattoId}/From/{buffetId}")
@@ -106,10 +112,22 @@ public class BuffetController {
 		return "admin/buffets.html";
 	}
 
-	// richiede tutti i buffet (non viene specificato un id particolare)
+	/* L'utente è interessato solo ai buffet che contengono almeno un piatto.
+	 * I buffet vuoti possono comparire nell'ambiente dell'amministratore ma,
+	 * finchè non vengono completati con la lista dei piatti, è come se fossero in uno stato inconsistente e,
+	 *  perciò, non devono comparire nell'ambiente dell'utente */
+	
+	
 	@GetMapping("/user/buffets")
 	public String getUserBuffets(Model model) {
 		List<Buffet> buffets = this.buffetService.findAll();
+		
+		for (Iterator<Buffet> iterator = buffets.iterator(); iterator.hasNext();) {
+			Buffet buffet = (Buffet) iterator.next();
+			if (buffet.getPiatti().size() == 0)
+				iterator.remove();
+		}
+		
 		model.addAttribute("buffets", buffets);
 		return "user/buffets.html";
 	}

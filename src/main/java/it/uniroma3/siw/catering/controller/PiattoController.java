@@ -87,8 +87,7 @@ public class PiattoController {
 		piatto.addIngrediente(ingrediente);
 		this.ingredienteService.save(ingrediente);
 		this.piattoService.save(piatto);
-		model.addAttribute("piatti", this.piattoService.findAll());
-		return "admin/piatti.html";
+		return this.getIngrediente(id, model);
 	}
 	
 	@GetMapping("/admin/toRemoveIngrediente/{ingredienteId}/From/{piattoId}")
@@ -110,10 +109,21 @@ public class PiattoController {
 		return "admin/piatti.html";
 	}
 
-	// richiede tutti i piatti (non viene specificato un id particolare)
+	/* L'utente è interessato solo ai piatti che presenti in almeno un buffet.
+	 * Gli altri piatti possono comparire nell'ambiente dell'amministratore ma,
+	 * finchè non vengono inseriti in almeno un buffet, è come se fossero in uno stato inconsistente e,
+	 * perciò, non devono comparire nell'ambiente dell'utente */
+	
 	@GetMapping("/user/piatti")
 	public String getUserPiatti(Model model) {
 		List<Piatto> piatti = this.piattoService.findAll();
+		
+		for (Iterator<Piatto> iterator = piatti.iterator(); iterator.hasNext();) {
+			Piatto piatto = (Piatto) iterator.next();
+			if (piatto.getBuffets().size() == 0)
+				iterator.remove();
+		}
+		
 		model.addAttribute("piatti", piatti);
 		return "user/piatti.html";
 	}

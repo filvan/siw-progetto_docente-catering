@@ -82,8 +82,7 @@ public class ChefController {
 		chef.addBuffet(buffet);
 		this.buffetService.save(buffet);
 		this.chefService.save(chef);
-		model.addAttribute("chefs", this.chefService.findAll());
-		return "admin/chefs.html";
+		return this.getBuffet(id, model);
 	}
 
 	@GetMapping("/admin/toRemoveBuffet/{buffetId}")
@@ -105,10 +104,21 @@ public class ChefController {
 		return "admin/chefs.html";
 	}
 
-	// richiede tutti gli chef (non viene specificato un id particolare)
+	/* L'utente è interessato solo agli chef che hanno proposto almeno un buffet.
+	 * Gli chef che non hanno proposto buffet possono comparire nell'ambiente dell'amministratore ma,
+	 * finchè non vengono completati con la lista dei buffet proposti, è come se fossero in uno stato inconsistente e,
+	 * perciò, non devono comparire nell'ambiente dell'utente */
+	
 	@GetMapping("/user/chefs")
 	public String getUserChefs(Model model) {
 		List<Chef> chefs = this.chefService.findAll();
+		
+		for (Iterator<Chef> iterator = chefs.iterator(); iterator.hasNext();) {
+			Chef chef = (Chef) iterator.next();
+			if (chef.getBuffetProposti().size() == 0)
+				iterator.remove();
+		}
+		
 		model.addAttribute("chefs", chefs);
 		return "user/chefs.html";
 	}

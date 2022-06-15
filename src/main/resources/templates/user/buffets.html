@@ -14,7 +14,7 @@
 		<p>
 		<table>
 			<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
-			<tr th:each="buffet : ${buffets}" th:unless="${buffet.piatti.isEmpty()}">
+			<tr th:each="buffet : ${buffets}">
 				<td><a href="user/buffet.html" th:href="@{'/user/buffet' + '/' + ${buffet.id}}"
 					th:text="${buffet.nome}">Buffet di prova</a></td>
 			</tr>
