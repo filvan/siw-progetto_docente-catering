@@ -54,4 +54,11 @@ public class BuffetService {
 	public void delete(Buffet buffet) {
 		buffetRepository.delete(buffet);
 	}
+	
+	@Transactional
+	public void update(Buffet buffet, String nome, String descrizione) {
+		buffet.setNome(nome);
+		buffet.setDescrizione(descrizione);
+		this.buffetRepository.save(buffet);
+	}
 }
