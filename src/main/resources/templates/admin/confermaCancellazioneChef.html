@@ -9,7 +9,7 @@
 
 <body>
 	<div>
-		<h1>Chef da cancellare</h1>
+		<h1>Cancella uno chef</h1>
 		<img src="/images/chef.jpg" alt="A chef" width="70%" />
 		<p>
 		<div>
@@ -23,11 +23,17 @@
 			<em th:unless="${chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</em>
 		</div>
 		</p>
-		<p>
-			<strong>Confermi di voler cancellare questo chef ?</strong>
+		<table>
+			<tr>
+			<td><strong>Confermi di voler cancellare questo chef ?</strong></td>
+			<td>
+			<div class="button">
 			<a class="button" href="admin/chefs.html" th:href="@{'/admin/confirmDeleteChef'+ '/' + ${chef.id}}"
 				th:text="Conferma">Conferma</a>
-		</p>
+			</div>
+			</td>
+			</tr>
+		</table>
 	</div>
 	<footer>
 		<p>

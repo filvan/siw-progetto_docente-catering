@@ -9,7 +9,7 @@
 
 <body>
 	<div>
-		<h1>Ingrediente da cancellare</h1>
+		<h1>Cancella un ingrediente</h1>
 		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
 		<p>
 		<div>
@@ -25,11 +25,20 @@
 			<em th:unless="${ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</em>
 		</div>
 		</p>
-		<p>
-			<strong>Confermi di voler cancellare quest'ingrediente ?</strong>
-			<a class="button" href="admin/ingredienti.html"
-				th:href="@{'/admin/confirmDeleteIngrediente'+ '/' + ${ingrediente.id}}" th:text="Conferma">Conferma</a>
-		</p>
+		<table>
+			<tr>
+				<td>
+					<strong>Confermi di voler cancellare quest'ingrediente ?</strong>
+				</td>
+				<td>
+					<div class="button">
+						<a class="button" href="admin/ingredienti.html"
+							th:href="@{'/admin/confirmDeleteIngrediente'+ '/' + ${ingrediente.id}}"
+							th:text="Conferma">Conferma</a>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 	<footer>
 		<p>

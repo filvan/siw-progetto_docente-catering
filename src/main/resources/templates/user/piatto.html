@@ -9,17 +9,12 @@
 
 <body>
 	<div>
-		<h1>Dettagli piatto</h1>
+		<h1 th:text="${piatto.nome}"></h1>
+		<h3>
+			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
+		</h3>
 		<img src="/images/piatto2.jpg" alt="A course" width="70%" />
 		<p>
-		<div>
-			<!-- <span>Nome: </span> -->
-			<strong th:text="${piatto.nome}">Piatto</strong>
-		</div>
-		<div>
-			<!-- <span>Descrizione: </span> -->
-			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
-		</div>
 		<div>
 			<p>
 				<!-- <span th:if="${buffets.isEmpty()}">attualmente non disponibile</span> -->

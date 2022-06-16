@@ -9,7 +9,7 @@
 
 <body>
 	<div>
-		<h1>Aggiungi un piatto all'elenco dei piatti del buffet</h1>
+		<h1>Aggiungi un piatto al buffet</h1>
 		<span th:if="${piatti.isEmpty()}">Non ci sono piatti da poter aggiungere!</span>
 		<form th:unless="${piatti.isEmpty()}" th:action="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}"
 			method="POST" th:object="${piatto}">
@@ -23,9 +23,9 @@
 								</select></span>
 				</div>
 			</div>
-			<div>
+			<p>
 				<span><button type="submit">Conferma</button></span>
-			</div>
+			</p>
 		</form>
 	</div>
 	<footer>

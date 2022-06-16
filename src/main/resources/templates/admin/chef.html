@@ -9,19 +9,12 @@
 
 <body>
 	<div>
-		<h1>Dettagli chef</h1>
+		<h1 th:text="${chef.nome} + ' ' + ${chef.cognome}"></h1>
+		<h3>
+			<em th:unless="${chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</em>
+		</h3>
 		<img src="/images/chef.jpg" alt="A chef" width="70%" />
 		<p>
-		<div>
-			<!-- <span>Nome: </span> -->
-			<strong th:text="${chef.nome}">Raffaello</strong>
-			<!-- <span>Cognome: </span> -->
-			<strong th:text="${chef.cognome}">Sanzio</strong>
-		</div>
-		<div>
-			<!-- <span>Nazionalità: </span> -->
-			<em th:unless="${chef.nazionalita.isEmpty()}" th:text="${chef.nazionalita}">Prova</em>
-		</div>
 		<div>
 			<p>
 				<span th:if="${buffets.isEmpty()}">Non ci sono buffet per questo chef</span>
@@ -31,8 +24,12 @@
 					<td><a th:if="${buffet != null}" href="/admin/buffet.html"
 							th:href="@{'/admin/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di
 							prova</a></td>
-					<td><a class="button" th:href="@{'/admin/toRemoveBuffet' + '/' + ${buffet.id}}"
-							th:text="Rimuovi">Rimuovi</a></td>
+					<td>
+						<div class="button">
+							<a class="button" th:href="@{'/admin/toRemoveBuffet' + '/' + ${buffet.id}}"
+								th:text="Rimuovi">Rimuovi</a>
+						</div>
+					</td>
 				</tr>
 			</table>
 			</p>

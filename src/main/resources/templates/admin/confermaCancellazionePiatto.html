@@ -9,7 +9,7 @@
 
 <body>
 	<div>
-		<h1>Piatto da cancellare</h1>
+		<h1>Cancella un piatto</h1>
 		<img src="/images/piatto2.jpg" alt="A course" width="70%" />
 		<p>
 		<div>
@@ -21,11 +21,20 @@
 			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
 		</div>
 		</p>
-		<p>
-			<strong>Confermi di voler cancellare questo piatto ?</strong>
-			<a class="button" href="admin/piatti.html" th:href="@{'/admin/confirmDeletePiatto'+ '/' + ${piatto.id}}"
-				th:text="Conferma">Conferma</a>
-		</p>
+		<table>
+			<tr>
+				<td>
+					<strong>Confermi di voler cancellare questo piatto ?</strong>
+				</td>
+				<td>
+					<div class="button">
+						<a class="button" href="admin/piatti.html"
+							th:href="@{'/admin/confirmDeletePiatto'+ '/' + ${piatto.id}}"
+							th:text="Conferma">Conferma</a>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 	<footer>
 		<p>

@@ -10,39 +10,69 @@
 <body>
 	<p>
 	<h1>Menù amministratore</h1>
-	<section class="text-center">
-		<div>Parti dagli ingredienti</div>
-		<div>Poi inserisci i piatti</div>
-		<div>Infine i buffet e gli chef</div>
-	</section>
+	<h2>
+		<span>Comincia inserendo gli ingredienti, poi i piatti, infine i buffet e gli chef</span>
+	</h2>
 	<p>
 	<table>
 		<tr>
 			<td>Ingrediente</td>
-			<td><a class="button" href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci</a></td>
-			<td><a class="button" href="admin/ingrediente" th:href="@{/admin/ingredienti}">Visualizza</a></td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/ingredienteForm" th:href="@{/admin/ingrediente}">Inserisci</a>
+				</div>
+			</td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/ingrediente" th:href="@{/admin/ingredienti}">Visualizza</a>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>Piatto</td>
-			<td><a class="button" href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci</a></td>
-			<td><a class="button" href="admin/piatto" th:href="@{/admin/piatti}">Visualizza</a></td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/piattoForm" th:href="@{/admin/piatto}">Inserisci</a>
+				</div>
+			</td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/piatto" th:href="@{/admin/piatti}">Visualizza</a>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>Buffet</td>
-			<td><a class="button" href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci</a></td>
-			<td><a class="button" href="admin/buffet" th:href="@{/admin/buffets}">Visualizza</a></td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci</a>
+				</div>
+			</td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/buffet" th:href="@{/admin/buffets}">Visualizza</a>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>Chef</td>
-			<td><a class="button" href="admin/chefForm" th:href="@{/admin/chef}">Inserisci</a></td>
-			<td><a class="button" href="admin/chef" th:href="@{/admin/chefs}">Visualizza</a></td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/chefForm" th:href="@{/admin/chef}">Inserisci</a>
+				</div>
+			</td>
+			<td>
+				<div class="button">
+					<a class="button" href="admin/chef" th:href="@{/admin/chefs}">Visualizza</a>
+				</div>
+			</td>
 		</tr>
 	</table>
 	</p>
 	</p>
 	<footer>
 		<p>
-		<a th:href="@{/logout}">Logout</a>
+			<a th:href="@{/logout}">Logout</a>
 		</p>
 	</footer>
 </body>

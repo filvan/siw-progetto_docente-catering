@@ -9,11 +9,11 @@
 
 <body>
 	<div>
-		<h1>Elenco ingredienti</h1>
+		<h1>I nostri ingredienti</h1>
 		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
 		<p>
 		<table>
-			<thead th:unless="${ingredienti.isEmpty()}">INGREDIENTI</thead>
+			<thead th:unless="${ingredienti.isEmpty()}"></thead>
 			<tr th:each="ingrediente : ${ingredienti}">
 				<td><a href="user/ingrediente.html" th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}"
 						th:text="${ingrediente.nome}">Ingrediente di prova</a></td>

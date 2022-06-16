@@ -9,17 +9,12 @@
 
 <body>
 	<div>
-		<h1>Dettagli buffet</h1>
+		<h1 th:text="Buffet + ' ' + ${buffet.nome}"></h1>
+		<h3>
+			<em th:unless="${buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</em>
+		</h3>
 		<img src="/images/buffet.jpg" alt="A buffet" width="70%" />
 		<p>
-		<div>
-			<!-- <span>Nome: </span> -->
-			<strong th:text="${buffet.nome}">Buffet</strong>
-		</div>
-		<div>
-			<!-- <span>Descrizione: </span> -->
-			<em th:unless="${buffet.descrizione.isEmpty()}" th:text="${buffet.descrizione}">Prova</em>
-		</div>
 		<div>
 			<p>
 				<span th:if="${piatti.isEmpty()}">in lavorazione</span>
@@ -29,9 +24,13 @@
 					<td><a th:if="${piatto != null}" href="/admin/piatto.html"
 							th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Piatto di
 							prova</a></td>
-					<td><a class="button"
-							th:href="@{'/admin/toRemovePiatto' + '/' + ${piatto.id} + '/From/' + ${buffet.id}}"
-							th:text="Rimuovi">Rimuovi</a></td>
+					<td>
+						<div class="button">
+							<a class="button"
+								th:href="@{'/admin/toRemovePiatto' + '/' + ${piatto.id} + '/From/' + ${buffet.id}}"
+								th:text="Rimuovi">Rimuovi</a>
+						</div>
+					</td>
 				</tr>
 			</table>
 			</p>
@@ -47,8 +46,7 @@
 
 		<div>
 			<a href="/admin/aggiungiPiattoAlBuffet.html"
-				th:href="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}">Aggiungi un piatto all'elenco dei piatti di
-				questo buffet</a>
+				th:href="@{'/admin/addPiattoToBuffet' + '/' + ${buffet.id}}">Aggiungi un piatto a questo buffet</a>
 		</div>
 	</div>
 	<footer>

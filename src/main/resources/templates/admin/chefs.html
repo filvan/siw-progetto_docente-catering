@@ -9,18 +9,22 @@
 
 <body>
 	<div>
-		<h1>Elenco chef</h1>
+		<h1>I nostri chef</h1>
 		<img src="/images/chef.jpg" alt="A chef" width="70%" />
 		<p>
 		<table>
-			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
+			<thead th:unless="${chefs.isEmpty()}"></thead>
 			<tr th:each="chef : ${chefs}">
 				<td><a href="admin/chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}"
 						th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
 				<!--- <td><a href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
 					th:text="Cancella">Cancella</a></td> -->
-				<td><a class="button" href="confermaCancellazioneChef.html"
-						th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}" th:text="Cancella">Cancella</a></td>
+				<td>
+					<div class="button">
+						<a class="button" href="confermaCancellazioneChef.html"
+							th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}" th:text="Cancella">Cancella</a>
+					</div>
+				</td>
 			</tr>
 		</table>
 		</p>

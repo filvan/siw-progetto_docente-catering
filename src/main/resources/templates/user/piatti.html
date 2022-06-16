@@ -9,11 +9,11 @@
 
 <body>
 	<div>
-		<h1>Elenco piatti</h1>
+		<h1>I nostri piatti</h1>
 		<img src="/images/piatto2.jpg" alt="A course" width="70%" />
 		<p>
 		<table>
-			<thead th:unless="${piatti.isEmpty()}">PIATTI</thead>
+			<thead th:unless="${piatti.isEmpty()}"></thead>
 			<tr th:each="piatto : ${piatti}">
 				<td><a href="user/piatto.html" th:href="@{'/user/piatto' + '/' + ${piatto.id}}"
 						th:text="${piatto.nome}">Piatto di prova</a>

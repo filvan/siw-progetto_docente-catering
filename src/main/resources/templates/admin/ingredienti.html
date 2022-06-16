@@ -9,18 +9,23 @@
 
 <body>
 	<div>
-		<h1>Elenco ingredienti</h1>
+		<h1>I nostri ingredienti</h1>
 		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
 		<p>
 		<table>
-		<thead th:unless="${ingredienti.isEmpty()}">INGREDIENTI</thead>
+			<thead th:unless="${ingredienti.isEmpty()}"></thead>
 			<tr th:each="ingrediente : ${ingredienti}">
 				<td><a href="admin/ingrediente.html" th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}"
-					th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
+						th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
 				<!--- <td><a href="confermaCancellazioneIngrediente.html" th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"
 					th:text="Cancella">Cancella</a></td> -->
-				<td><a class="button" href="confermaCancellazioneIngrediente.html" th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"
-					th:text="Cancella">Cancella</a></td>
+				<td>
+					<div class="button">
+						<a class="button" href="confermaCancellazioneIngrediente.html"
+							th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}"
+							th:text="Cancella">Cancella</a>
+					</div>
+				</td>
 			</tr>
 		</table>
 		</p>

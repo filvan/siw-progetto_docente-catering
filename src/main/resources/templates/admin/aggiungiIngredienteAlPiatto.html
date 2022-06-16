@@ -9,7 +9,7 @@
 
 <body>
 	<div>
-		<h1>Aggiungi un ingrediente all'elenco degli ingredienti del piatto</h1>
+		<h1>Aggiungi un ingrediente al piatto</h1>
 		<span th:if="${ingredienti.isEmpty()}">Non ci sono ingredienti da poter aggiungere!</span>
 		<form th:unless="${ingredienti.isEmpty()}" th:action="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}"
 			method="POST" th:object="${ingrediente}">
@@ -24,9 +24,9 @@
 								</select></span>
 				</div>
 			</div>
-			<div>
+			<p>
 				<span><button type="submit">Conferma</button></span>
-			</div>
+			</p>
 		</form>
 	</div>
 	<footer>

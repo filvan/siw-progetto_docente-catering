@@ -9,17 +9,12 @@
 
 <body>
 	<div>
-		<h1>Dettagli piatto</h1>
+		<h1 th:text="${piatto.nome}"></h1>
+		<h3>
+			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
+		</h3>
 		<img src="/images/piatto2.jpg" alt="A course" width="70%" />
 		<p>
-		<div>
-			<!-- <span>Nome: </span> -->
-			<strong th:text="${piatto.nome}">Piatto</strong>
-		</div>
-		<div>
-			<!-- <span>Descrizione: </span> -->
-			<em th:unless="${piatto.descrizione.isEmpty()}" th:text="${piatto.descrizione}">Prova</em>
-		</div>
 		<div>
 			<p>
 				<span th:if="${buffets.isEmpty()}">in lavorazione</span>
@@ -42,9 +37,13 @@
 					<td><a th:if="${ingrediente != null}" href="/admin/ingrediente.html"
 							th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}"
 							th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
-					<td><a class="button"
-							th:href="@{'/admin/toRemoveIngrediente' + '/' + ${ingrediente.id} + '/From/' + ${piatto.id}}"
-							th:text="Rimuovi">Rimuovi</a></td>
+					<td>
+						<div class="button">
+							<a class="button"
+								th:href="@{'/admin/toRemoveIngrediente' + '/' + ${ingrediente.id} + '/From/' + ${piatto.id}}"
+								th:text="Rimuovi">Rimuovi</a>
+						</div>
+					</td>
 				</tr>
 			</table>
 			<p>
@@ -52,8 +51,8 @@
 		</p>
 		<div>
 			<a href="/admin/aggiungiIngredienteAlPiatto.html"
-				th:href="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}">Aggiungi un ingrediente all'elenco
-				degli ingredienti di questo piatto</a>
+				th:href="@{'/admin/addIngredienteToPiatto' + '/' + ${piatto.id}}">Aggiungi un ingrediente a questo
+				piatto</a>
 		</div>
 	</div>
 	<footer>

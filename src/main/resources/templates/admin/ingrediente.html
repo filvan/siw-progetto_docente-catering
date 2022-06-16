@@ -9,21 +9,15 @@
 
 <body>
 	<div>
-		<h1>Dettagli ingrediente</h1>
+		<h1 th:text="${ingrediente.nome}"></h1>
+		<h3>
+			<em th:unless="${ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</em>
+		</h3>
+		<h3>
+			<em th:unless="${ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</em>
+		</h3>
 		<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
 		<p>
-		<div>
-			<!-- <span>Nome: </span> -->
-			<strong th:text="${ingrediente.nome}">Ingrediente</strong>
-		</div>
-		<div>
-			<!-- <span>Origine: </span> -->
-			<em th:unless="${ingrediente.origine.isEmpty()}" th:text="${ingrediente.origine}">Prova</em>
-		</div>
-		<div>
-			<!-- <span>Descrizione: </span> -->
-			<em th:unless="${ingrediente.descrizione.isEmpty()}" th:text="${ingrediente.descrizione}">Prova</em>
-		</div>
 		<div>
 			<p>
 				<span th:if="${piatti.isEmpty()}">Elenco dei piatti attualmente non disponibile</span>

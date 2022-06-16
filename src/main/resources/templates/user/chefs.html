@@ -9,11 +9,11 @@
 
 <body>
 	<div>
-		<h1>Elenco chef</h1>
+		<h1>I nostri chef</h1>
 		<img src="/images/chef.jpg" alt="A chef" width="70%" />
 		<p>
 		<table>
-			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
+			<thead th:unless="${chefs.isEmpty()}"></thead>
 			<tr th:each="chef : ${chefs}">
 				<td><a href="user/chef.html" th:href="@{'/user/chef' + '/' + ${chef.id}}"
 						th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
