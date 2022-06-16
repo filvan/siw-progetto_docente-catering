@@ -169,4 +169,18 @@ public class ChefController {
 		this.chefService.delete(chef);
 		return this.getAdminChefs(model);
 	}
+	
+	@GetMapping("/admin/modifyChef/{id}")
+	public String modifyChef(@PathVariable("id") Long id, Model model) {
+		Chef chef =  this.chefService.findById(id);
+		model.addAttribute("chef", chef);
+		return "admin/modificaChefForm.html";
+	}
+	
+	@PostMapping("/admin/confirmModifyChef/{id}")
+	public String confirmModifyChef(@Valid @ModelAttribute("chef") Chef chef, Model model, BindingResult bindingResult) {
+			this.chefService.update(chef.getId(), chef.getNome(), chef.getCognome(), chef.getNazionalita());
+			model.addAttribute("chefs", this.chefService.findAll());
+			return "admin/chefs.html";
+	}
 }

@@ -26,6 +26,12 @@
 							th:text="Cancella">Cancella</a>
 					</div>
 				</td>
+				<td>
+					<div class="button">
+						<a class="button" href="modificaIngredienteForm.html"
+							th:href="@{'/admin/modifyIngrediente' + '/' + ${ingrediente.id}}" th:text="Modifica">Modifica</a>
+					</div>
+				</td>
 			</tr>
 		</table>
 		</p>

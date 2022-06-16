@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Modifica piatto</title>
+	<link rel="stylesheet" href="/css/admin.css" />
+</head>
+
+<body>
+	<h1>Modifica il piatto</h1>
+	<img src="/images/piatto2.jpg" alt="A course" width="70%" />
+	<form th:action="@{'/admin/confirmModifyPiatto'+ '/' + ${piatto.id}}" method="POST" th:object="${piatto}">
+		<p>
+		<table>
+			<tr th:if="${#fields.hasGlobalErrors()}">
+				  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			</tr>
+			<tr>
+				<td>Nome</td>
+				<td><input type="text" required th:field="${piatto.nome}" /></td>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{piatto.nome}"></span>
+			</tr>
+			<tr>
+				<td>Descrizione</td>
+				<td><input type="text" th:field="${piatto.descrizione}" /></td>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{piatto.descrizione}"></span>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Conferma</button></td>
+			</tr>
+		</table>
+		</p>
+	</form>
+	<footer>
+		<p>
+		<div>
+			<a href="/admin/piatti">Elenco dei piatti</a>
+		</div>
+		<div>
+			<a href="/menu">Torna al menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Torna alla home</a>
+		</div>
+		</p>
+	</footer>
+</body>
+
+</html>

@@ -178,4 +178,18 @@ public class PiattoController {
 		this.piattoService.delete(piatto);
 		return this.getAdminPiatti(model);
 	}
+	
+	@GetMapping("/admin/modifyPiatto/{id}")
+	public String modifyPiatto(@PathVariable("id") Long id, Model model) {
+		Piatto piatto =  this.piattoService.findById(id);
+		model.addAttribute("piatto", piatto);
+		return "admin/modificaPiattoForm.html";
+	}
+	
+	@PostMapping("/admin/confirmModifyPiatto/{id}")
+	public String confirmModifyPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, Model model, BindingResult bindingResult) {
+			this.piattoService.update(piatto.getId(), piatto.getNome(), piatto.getDescrizione());
+			model.addAttribute("piatti", this.piattoService.findAll());
+			return "admin/piatti.html";
+	}
 }

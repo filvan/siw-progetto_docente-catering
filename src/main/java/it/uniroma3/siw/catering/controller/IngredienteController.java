@@ -133,4 +133,18 @@ public class IngredienteController {
 		this.ingredienteService.delete(ingrediente);
 		return this.getAdminIngredienti(model);
 	}
+	
+	@GetMapping("/admin/modifyIngrediente/{id}")
+	public String modifyIngrediente(@PathVariable("id") Long id, Model model) {
+		Ingrediente ingrediente =  this.ingredienteService.findById(id);
+		model.addAttribute("ingrediente", ingrediente);
+		return "admin/modificaIngredienteForm.html";
+	}
+	
+	@PostMapping("/admin/confirmModifyIngrediente/{id}")
+	public String confirmModifyIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, Model model, BindingResult bindingResult) {
+			this.ingredienteService.update(ingrediente.getId(), ingrediente.getNome(), ingrediente.getOrigine(), ingrediente.getDescrizione());
+			model.addAttribute("ingredienti", this.ingredienteService.findAll());
+			return "admin/ingredienti.html";
+	}
 }

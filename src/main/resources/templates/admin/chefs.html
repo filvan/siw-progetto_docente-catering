@@ -25,6 +25,12 @@
 							th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}" th:text="Cancella">Cancella</a>
 					</div>
 				</td>
+				<td>
+					<div class="button">
+						<a class="button" href="modificaChefForm.html"
+							th:href="@{'/admin/modifyChef' + '/' + ${chef.id}}" th:text="Modifica">Modifica</a>
+					</div>
+				</td>
 			</tr>
 		</table>
 		</p>

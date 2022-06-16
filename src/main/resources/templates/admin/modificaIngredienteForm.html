@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Inserimento ingrediente</title>
+	<link rel="stylesheet" href="/css/admin.css" />
+</head>
+
+<body>
+	<h1>Inserisci un ingrediente</h1>
+	<img src="/images/ingrediente.jpg" alt="Some ingredients" width="70%" />
+	<form th:action="@{'/admin/confirmModifyIngrediente'+ '/' + ${ingrediente.id}}" method="POST" th:object="${ingrediente}">
+		<p>
+		<table>
+			<tr th:if="${#fields.hasGlobalErrors()}">
+				  <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+			</tr>
+			<tr>
+				<td>Nome</td>
+				<td><input type="text" required th:field="${ingrediente.nome}" /></td>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{ingrediente.nome}"></span>
+			</tr>
+			<tr>
+				<td>Origine</td>
+				<td><input type="text" th:field="${ingrediente.origine}" /></td>
+				<span th:if="${#fields.hasErrors('origine')}" th:errors="*{ingrediente.origine}"></span>
+			</tr>
+			<tr>
+				<td>Descrizione</td>
+				<td><input type="text" th:field="${ingrediente.descrizione}" /></td>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{ingrediente.descrizione}"></span>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Conferma</button></td>
+			</tr>
+		</table>
+		</p>
+	</form>
+	<footer>
+		<p>
+		<div>
+			<a href="/admin/ingredienti">Elenco degli ingredienti</a>
+		</div>
+		<div>
+			<a href="/menu">Torna al menù amministratore</a>
+		</div>
+		<div>
+			<a href="/">Torna alla home</a>
+		</div>
+		</p>
+	</footer>
+</body>
+
+</html>

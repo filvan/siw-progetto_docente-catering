@@ -54,4 +54,9 @@ public class PiattoService {
 	public void delete(Piatto piatto) {
 		piattoRepository.delete(piatto);
 	}
+	
+	@Transactional
+	public void update(Long id, String nome, String descrizione) {
+		this.piattoRepository.updateNomeAndDescrizioneById(id, nome, descrizione);
+	}
 }

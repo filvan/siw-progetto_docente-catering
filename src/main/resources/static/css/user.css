@@ -18,8 +18,16 @@ a {
 	text-decoration: none;
 }
 
+div.button a:hover {
+	color: black;
+}
+
 a:hover {
 	color: orange;
+}
+
+a:active {
+	color: red;
 }
 
 footer {

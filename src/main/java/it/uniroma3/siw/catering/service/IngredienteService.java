@@ -54,4 +54,9 @@ public class IngredienteService {
 	public void delete(Ingrediente ingrediente) {
 		ingredienteRepository.delete(ingrediente);
 	}
+	
+	@Transactional
+	public void update(Long id, String nome, String origine, String descrizione) {
+		this.ingredienteRepository.updateNomeAndOrigineAndDescrizioneById(id, nome, origine, descrizione);
+	}
 }

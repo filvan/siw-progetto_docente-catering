@@ -3,14 +3,14 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Modifica chef</title>
+	<title>Inserimento chef</title>
 	<link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
-	<h1>Modifica lo chef</h1>
+	<h1>Inserisci uno chef</h1>
 	<img src="/images/chef.jpg" alt="A chef" width="70%" />
-	<form th:action="@{'/admin/confirmModifyChef'+ '/' + ${chef.id}}" method="POST" th:object="${chef}">
+	<form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
 		<p>
 		<table>
 			<tr th:if="${#fields.hasGlobalErrors()}">

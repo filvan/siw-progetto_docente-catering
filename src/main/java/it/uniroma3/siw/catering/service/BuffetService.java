@@ -56,9 +56,7 @@ public class BuffetService {
 	}
 	
 	@Transactional
-	public void update(Buffet buffet, String nome, String descrizione) {
-		buffet.setNome(nome);
-		buffet.setDescrizione(descrizione);
-		this.buffetRepository.save(buffet);
+	public void update(Long id, String nome, String descrizione) {
+		this.buffetRepository.updateNomeAndDescrizioneById(id, nome, descrizione);
 	}
 }

@@ -54,4 +54,9 @@ public class ChefService {
 	public void delete(Chef chef) {
 		chefRepository.delete(chef);
 	}
+	
+	@Transactional
+	public void update(Long id, String nome, String cognome, String nazionalita) {
+		this.chefRepository.updateNomeAndCognomeAndNazionalitaById(id, nome, cognome, nazionalita);
+	}
 }
