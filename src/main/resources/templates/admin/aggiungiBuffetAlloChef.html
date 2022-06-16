@@ -11,7 +11,8 @@
 	<div>
 		<h1>Aggiungi un buffet a quelli proposti dallo chef</h1>
 		<span th:if="${buffets.isEmpty()}">Non ci sono buffet da poter aggiungere!</span>
-		<form th:unless="${buffets.isEmpty()}" th:action="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}" method="POST" th:object="${buffet}">
+		<form th:unless="${buffets.isEmpty()}" th:action="@{'/admin/addBuffetToChef' + '/' + ${chef.id}}" method="POST"
+			th:object="${buffet}">
 			<div>
 				<div>
 					<span><label for="seleziona-buffet">Scegli un buffet tra quelli presenti nell'elenco</label><span>
@@ -28,8 +29,10 @@
 		</form>
 	</div>
 	<footer>
+		<p>
 		<div>
-			<a th:href="@{'/admin/chef' + '/' + ${chef.id}}" th:text="Torna + ' ' + allo + ' ' + chef + ' ' + ${chef.cognome}"></a>
+			<a th:href="@{'/admin/chef' + '/' + ${chef.id}}"
+				th:text="Torna + ' ' + allo + ' ' + chef + ' ' + ${chef.cognome}"></a>
 		</div>
 		<div>
 			<a href="/admin/chefs">Torna all'elenco degli chef</a>
@@ -40,6 +43,7 @@
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

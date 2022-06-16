@@ -10,7 +10,7 @@
 <body>
 	<h1>Modifica il buffet</h1>
 	<img src="/images/buffet.jpg" alt="A buffet" width="70%" />
-	<form th:action="@{/admin/buffet}" method="POST" th:object="${buffet}">
+	<form th:action="@{'/admin/confirmModifyBuffet'+ '/' + ${buffet.id}}" method="POST" th:object="${buffet}">
 		<p>
 		<table>
 			<tr th:if="${#fields.hasGlobalErrors()}">
@@ -24,7 +24,8 @@
 			<tr>
 				<td>Descrizione</td>
 				<td><input type="text" th:field="${buffet.descrizione}" /></td>
-				<td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{buffet.descrizione}" th:style="'color:red'"></td>
+				<td th:if="${#fields.hasErrors('descrizione')}" th:errors="*{buffet.descrizione}"
+					th:style="'color:red'"></td>
 			</tr>
 			<tr>
 				<!-- <span><label for="seleziona-chef">Buffet proposto dallo chef:</label><span>
@@ -37,12 +38,12 @@
 			<tr>
 				<td></td>
 				<td><button type="submit">Conferma</button></td>
-				<td><input type="hidden" th:field="${buffet.id}" /></td>
 			</tr>
 		</table>
 		</p>
 	</form>
 	<footer>
+		<p>
 		<div>
 			<a href="/admin/buffets">Elenco dei buffet</a>
 		</div>
@@ -52,6 +53,7 @@
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

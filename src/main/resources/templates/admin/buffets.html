@@ -13,7 +13,7 @@
 		<img src="/images/buffet.jpg" alt="A buffet">
 		<p>
 		<table>
-		<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
+			<thead th:unless="${buffets.isEmpty()}">BUFFET</thead>
 			<tr th:each="buffet : ${buffets}">
 				<td><a href="admin/buffet.html" th:href="@{'/admin/buffet' + '/' + ${buffet.id}}"
 						th:text="${buffet.nome}">Buffet di prova</a></td>
@@ -21,20 +21,22 @@
 					th:text="Cancella">Cancella</a></td> -->
 				<td><a class="button" href="confermaCancellazioneBuffet.html"
 						th:href="@{'/admin/toDeleteBuffet' + '/' + ${buffet.id}}" th:text="Cancella">Cancella</a></td>
-				<!-- <td><a class="button" href="buffetForm2.html"
-						th:href="@{'/admin/modifyBuffet' + '/' + ${buffet.id}}" th:text="Modifica">Modifica</a></td> -->
+				<td><a class="button" href="buffetForm2.html"
+						th:href="@{'/admin/modifyBuffet' + '/' + ${buffet.id}}" th:text="Modifica">Modifica</a></td>
 			</tr>
 		</table>
 		</p>
 		<a href="admin/buffetForm" th:href="@{/admin/buffet}">Inserisci un buffet</a>
 	</div>
 	<footer>
+		<p>
 		<div>
 			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

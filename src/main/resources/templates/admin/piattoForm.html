@@ -9,7 +9,7 @@
 
 <body>
 	<h1>Inserisci un piatto</h1>
-	<img src="/images/piatto.jpg" alt="A course" width="70%" />
+	<img src="/images/piatto2.jpg" alt="A course" width="70%" />
 	<form th:action="@{/admin/piatto}" method="POST" th:object="${piatto}">
 		<p>
 		<table>
@@ -34,6 +34,7 @@
 		</p>
 	</form>
 	<footer>
+		<p>
 		<div>
 			<a href="/admin/piatti">Elenco dei piatti</a>
 		</div>
@@ -43,6 +44,7 @@
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

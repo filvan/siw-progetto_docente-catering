@@ -24,12 +24,13 @@
 		</div>
 		<div>
 			<p>
-			<span th:if="${buffets.isEmpty()}">Non ci sono buffet per questo chef</span>
+				<span th:if="${buffets.isEmpty()}">Non ci sono buffet per questo chef</span>
 			<table>
 				<thead th:unless="${buffets.isEmpty()}">Elenco dei buffet proposti da questo chef: </thead>
 				<tr th:each="buffet : ${buffets}">
-					<td><a th:if="${buffet != null}" href="/user/buffet.html" th:href="@{'/user/buffet' + '/' + ${buffet.id}}"
-						th:text="${buffet.nome}">Buffet di prova</a></td>
+					<td><a th:if="${buffet != null}" href="/user/buffet.html"
+							th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di
+							prova</a></td>
 				</tr>
 			</table>
 			</p>
@@ -37,6 +38,7 @@
 		</p>
 	</div>
 	<footer>
+		<p>
 		<div>
 			<a href="/user/chefs">Torna all'elenco degli chef</a>
 		</div>
@@ -46,6 +48,7 @@
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

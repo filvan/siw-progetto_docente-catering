@@ -16,23 +16,25 @@
 			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
 			<tr th:each="chef : ${chefs}">
 				<td><a href="admin/chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}"
-					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
+						th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
 				<!--- <td><a href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
 					th:text="Cancella">Cancella</a></td> -->
-				<td><a class="button" href="confermaCancellazioneChef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
-					th:text="Cancella">Cancella</a></td>
+				<td><a class="button" href="confermaCancellazioneChef.html"
+						th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}" th:text="Cancella">Cancella</a></td>
 			</tr>
 		</table>
 		</p>
 		<a href="admin/chefForm" th:href="@{/admin/chef}">Inserisci uno chef</a>
 	</div>
 	<footer>
+		<p>
 		<div>
 			<a href="/menu">Torna al menù amministratore</a>
 		</div>
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

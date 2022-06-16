@@ -16,18 +16,20 @@
 			<thead th:unless="${ingredienti.isEmpty()}">INGREDIENTI</thead>
 			<tr th:each="ingrediente : ${ingredienti}">
 				<td><a href="user/ingrediente.html" th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}"
-					th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
+						th:text="${ingrediente.nome}">Ingrediente di prova</a></td>
 			</tr>
 		</table>
 		</p>
 	</div>
 	<footer>
+		<p>
 		<div>
 			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 

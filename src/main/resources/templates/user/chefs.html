@@ -16,18 +16,20 @@
 			<thead th:unless="${chefs.isEmpty()}">CHEF</thead>
 			<tr th:each="chef : ${chefs}">
 				<td><a href="user/chef.html" th:href="@{'/user/chef' + '/' + ${chef.id}}"
-					th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
+						th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef di prova</a></td>
 			</tr>
 		</table>
 		</p>
 	</div>
 	<footer>
+		<p>
 		<div>
 			<a href="/menu">Torna al menù utente</a>
 		</div>
 		<div>
 			<a href="/">Torna alla home</a>
 		</div>
+		</p>
 	</footer>
 </body>
 
